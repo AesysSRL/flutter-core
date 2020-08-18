@@ -6,22 +6,22 @@ class AppError {
 
   AppError(this.message);
 
-  factory AppError.genericError() => AppError(getIt.get<AppErrorDefaultMessages>().genericError());
+  factory AppError.genericError() => AppError(getIt.get<ErrorDefaultMessages>().genericError());
 
-  factory AppError.offline() => AppError(getIt.get<AppErrorDefaultMessages>().offlineError());
+  factory AppError.offline() => AppError(getIt.get<ErrorDefaultMessages>().offlineError());
 
   factory AppError.fromException(e) {
-    AppError(getIt.get<AppErrorDefaultMessages>().errorMessageFromException(e));
-    return AppError(getIt.get<AppErrorDefaultMessages>().genericError());
+    AppError(getIt.get<ErrorDefaultMessages>().errorMessageFromException(e));
+    return AppError(getIt.get<ErrorDefaultMessages>().genericError());
   }
 }
 
-class AppErrorDefaultMessages {
+class ErrorDefaultMessages {
   final TranslateFunction genericError;
   final TranslateFunction offlineError;
   final TranslateExceptionFunction errorMessageFromException;
 
-  AppErrorDefaultMessages({@required this.genericError, @required this.offlineError, @required this.errorMessageFromException});
+  ErrorDefaultMessages({@required this.genericError, @required this.offlineError, @required this.errorMessageFromException});
 }
 
 typedef TranslateFunction = String Function();
