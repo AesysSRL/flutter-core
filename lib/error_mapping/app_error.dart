@@ -21,7 +21,7 @@ class ErrorDefaultMessages {
   final TranslateFunction offlineError;
   final TranslateExceptionFunction errorMessageFromException;
 
-  ErrorDefaultMessages({@required this.genericError, @required this.offlineError, @required this.errorMessageFromException});
+  const ErrorDefaultMessages({@required this.genericError, @required this.offlineError, @required this.errorMessageFromException});
 }
 
 typedef TranslateFunction = String Function();
