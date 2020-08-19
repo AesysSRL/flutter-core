@@ -6,16 +6,16 @@ import 'package:flutter_core/utilities/entities/pagination_options.dart';
 import '../entity.dart';
 import 'data_source.dart';
 
-abstract class EntityDataSource<I extends Entity, O extends Entity> extends DataSource<I, O> {
+abstract class EntityDataSource<P, I extends Entity, O extends Entity> extends DataSource<I, O> {
 Future<List<I>> getAll(FilterOptions options);
 
 Future<PaginationEntity<I>> getAllPaginated(PaginationOptions options);
 
-Future<I> get<T>(T id);
+Future<I> get(P id);
 
 Future<I> insert(O entity);
 
 Future<I> edit(O entity);
 
-Future<DeletionEntity> delete<T>(T id);
+Future<DeletionEntity> delete(P id);
 }
