@@ -9,7 +9,7 @@ import 'package:flutter_core/utilities/models/pagination_model.dart';
 import '../model.dart';
 
 abstract class EntityRepository<P, I extends Model, O extends Model> extends Repository<I, O> {
-Future<Either<AppError, List<I>>> getAll(FilterOptions options);
+Future<Either<AppError, List<I>>> getAll([FilterOptions options]);
 
 Future<Either<AppError, PaginationModel<I>>> getAllPaginated(PaginationOptions options);
 

@@ -7,7 +7,7 @@ import '../entity.dart';
 import 'data_source.dart';
 
 abstract class EntityDataSource<P, I extends Entity, O extends Entity> extends DataSource<I, O> {
-Future<List<I>> getAll(FilterOptions options);
+Future<List<I>> getAll([FilterOptions options]);
 
 Future<PaginationEntity<I>> getAllPaginated(PaginationOptions options);
 
