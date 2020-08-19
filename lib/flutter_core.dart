@@ -10,9 +10,10 @@ class Core {
       Router appRouter,
       ErrorDefaultMessages errorDefaultMessages,
       VoidCallback dataSources,
-      VoidCallback repositories
+      VoidCallback repositories,
+      VoidCallback useCases
       ){
-    getItInitialization(appRouter, errorDefaultMessages, dataSources, repositories);
+    getItInitialization(appRouter, errorDefaultMessages, dataSources, repositories, useCases);
   }
 
 }

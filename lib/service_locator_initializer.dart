@@ -8,7 +8,7 @@ import 'error_mapping/app_error.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void getItInitialization(Router appRouter, ErrorDefaultMessages errorDefaultMessages, VoidCallback dataSources, VoidCallback repositories) {
+void getItInitialization(Router appRouter, ErrorDefaultMessages errorDefaultMessages, VoidCallback dataSources, VoidCallback repositories, VoidCallback useCases) {
   getIt
     ..registerSingleton<DataConnectionChecker>(DataConnectionChecker(), signalsReady: true)
     ..registerSingleton<FlutterLocalNotificationsPlugin>(FlutterLocalNotificationsPlugin(), signalsReady: true)
@@ -17,4 +17,5 @@ void getItInitialization(Router appRouter, ErrorDefaultMessages errorDefaultMess
 
   dataSources();
   repositories();
+  useCases();
 }
