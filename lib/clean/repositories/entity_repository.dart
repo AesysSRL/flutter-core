@@ -17,7 +17,7 @@ Future<Either<AppError, I>> get(P id);
 
 Future<Either<AppError, I>> insert(O model);
 
-Future<Either<AppError, I>> edit(O model);
+Future<Either<AppError, I>> edit(P id, O model);
 
 Future<Either<AppError, DeletionModel>> delete(P id);
 }

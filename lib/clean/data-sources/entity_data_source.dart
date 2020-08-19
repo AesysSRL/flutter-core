@@ -15,7 +15,7 @@ Future<I> get(P id);
 
 Future<I> insert(O entity);
 
-Future<I> edit(O entity);
+Future<I> edit(P id, O entity);
 
 Future<DeletionEntity> delete(P id);
 }
