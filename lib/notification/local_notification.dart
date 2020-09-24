@@ -9,5 +9,5 @@ Future initializeLocalNotification(SelectNotificationCallback selectNotification
       .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
       ?.requestPermissions(alert: true, badge: true, sound: true,);
   final initializationSettings = InitializationSettings(initializationSettingsAndroid, initializationSettingsIOS);
-  getIt<FlutterLocalNotificationsPlugin>().initialize(initializationSettings, onSelectNotification: selectNotification);
+  await getIt<FlutterLocalNotificationsPlugin>().initialize(initializationSettings, onSelectNotification: selectNotification);
 }
