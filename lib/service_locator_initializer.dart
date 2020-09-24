@@ -1,4 +1,4 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_core/router/core-router.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -10,7 +10,7 @@ final GetIt getIt = GetIt.instance;
 
 void getItInitialization(CoreRouter appRouter, ErrorDefaultMessages errorDefaultMessages, VoidCallback dataSources, VoidCallback repositories, VoidCallback useCases) {
   getIt
-    ..registerSingleton<DataConnectionChecker>(DataConnectionChecker(), signalsReady: true)
+    ..registerSingleton<Connectivity>(Connectivity(), signalsReady: true)
     ..registerSingleton<FlutterLocalNotificationsPlugin>(FlutterLocalNotificationsPlugin(), signalsReady: true)
     ..registerSingleton<CoreRouter>(appRouter, signalsReady: true)
     ..registerSingleton<ErrorDefaultMessages>(errorDefaultMessages, signalsReady: true);

@@ -16,7 +16,7 @@ dependencies:
 
   # http
   dio: ^3.0.10
-  data_connection_checker: ^0.3.4
+  connectivity: ^0.4.9+3
   logger: ^0.9.3
 
   # service locator

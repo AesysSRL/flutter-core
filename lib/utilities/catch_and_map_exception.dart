@@ -1,11 +1,12 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:dartz/dartz.dart';
-import 'package:data_connection_checker/data_connection_checker.dart';
 
 import '../error_mapping/app_error.dart';
 import '../service_locator_initializer.dart';
 
 Future<Either<AppError, R>> checkConnectionAndCatchException<R>(Function call) async {
-  if(! await getIt<DataConnectionChecker>().hasConnection) return Left(AppError.offline());
+  var connectivityResult = (await catchException(getIt<Connectivity>().checkConnectivity)).fold((l) => ConnectivityResult.none, (r) => r);
+  if(connectivityResult == ConnectivityResult.none) return Left(AppError.offline());
   return catchException(call);
 }
 
