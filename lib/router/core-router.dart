@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-abstract class Router {
+abstract class CoreRouter {
   final String initialRoute;
 
-  Router(this.initialRoute);
+  CoreRouter(this.initialRoute);
 
   RouteFactory generateAppRoute;
 }
