@@ -7,13 +7,13 @@ import 'error_mapping/app_error.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void getItInitialization(CoreRouter appRouter, ErrorDefaultMessages errorDefaultMessages, VoidCallback dataSources, VoidCallback repositories, VoidCallback useCases) {
+Future<void> getItInitialization(CoreRouter appRouter, ErrorDefaultMessages errorDefaultMessages, VoidCallback dataSources, VoidCallback repositories, VoidCallback useCases) {
+  dataSources();
+  repositories();
+  useCases();
   getIt
     ..registerSingleton<Connectivity>(Connectivity(), signalsReady: true)
     ..registerSingleton<CoreRouter>(appRouter, signalsReady: true)
     ..registerSingleton<ErrorDefaultMessages>(errorDefaultMessages, signalsReady: true);
-
-  dataSources();
-  repositories();
-  useCases();
+  return getIt.allReady();
 }

@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 
 void configureFirebaseMessaging(Function(Map<String, dynamic>) onNotificationReceived) {
   FirebaseMessaging().configure(
