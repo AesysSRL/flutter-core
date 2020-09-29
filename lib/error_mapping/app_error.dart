@@ -2,29 +2,29 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_core/service_locator_initializer.dart';
 
 class AppError {
+  final int code;
   final String message;
 
-  AppError(this.message);
+  AppError({this.code, @required this.message});
 
-  factory AppError.genericError() => AppError(getIt.get<ErrorDefaultMessages>().genericError());
+  factory AppError.genericError() => AppError(code: 0, message: getIt.get<ErrorDefaultMessages>().genericErrorMessage());
 
-  factory AppError.offline() => AppError(getIt.get<ErrorDefaultMessages>().offlineError());
+  factory AppError.offline() => AppError(code: 1, message: getIt.get<ErrorDefaultMessages>().offlineErrorMessage());
 
   factory AppError.fromException(e) {
-    AppError(getIt.get<ErrorDefaultMessages>().errorMessageFromException(e));
-    return AppError(getIt.get<ErrorDefaultMessages>().genericError());
+    return getIt.get<ErrorDefaultMessages>().appErrorFromException(e);
   }
 }
 
 class ErrorDefaultMessages {
-  final TranslateFunction genericError;
-  final TranslateFunction offlineError;
-  final TranslateExceptionFunction errorMessageFromException;
+  final TranslateFunction genericErrorMessage;
+  final TranslateFunction offlineErrorMessage;
+  final AppErrorFromExceptionFunction appErrorFromException;
 
-  const ErrorDefaultMessages({@required this.genericError, @required this.offlineError, @required this.errorMessageFromException});
+  const ErrorDefaultMessages({@required this.genericErrorMessage, @required this.offlineErrorMessage, @required this.appErrorFromException});
 }
 
 typedef TranslateFunction = String Function();
-typedef TranslateExceptionFunction = String Function(dynamic);
+typedef AppErrorFromExceptionFunction = AppError Function(dynamic);
 
 typedef OnError = void Function(AppError appError);
