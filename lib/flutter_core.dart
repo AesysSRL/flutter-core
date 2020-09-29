@@ -8,12 +8,12 @@ import 'package:flutter_core/service_locator_initializer.dart';
 class Core {
   static void initialize(
       CoreRouter appRouter,
-      ErrorDefaultMessages errorDefaultMessages,
+      AppErrorDelegate appErrorDelegate,
       VoidCallback dataSources,
       VoidCallback repositories,
       VoidCallback useCases
       ){
-    getItInitialization(appRouter, errorDefaultMessages, dataSources, repositories, useCases);
+    getItInitialization(appRouter, appErrorDelegate, dataSources, repositories, useCases);
   }
 
 }
