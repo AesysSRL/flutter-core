@@ -6,18 +6,16 @@ import 'package:flutter_core/router/core-router.dart';
 import 'package:flutter_core/service_locator_initializer.dart';
 import 'package:get_it/get_it.dart';
 
-GetIt getIt;
+GetIt getIt = GetIt.I;
 
 class Core {
   static void initialize(
-      GetIt getItInstance,
       CoreRouter appRouter,
       AppErrorDelegate appErrorDelegate,
       VoidCallback dataSources,
       VoidCallback repositories,
       VoidCallback useCases
       ){
-    getIt = getItInstance;
     getItInitialization(appRouter, appErrorDelegate, dataSources, repositories, useCases);
   }
 
