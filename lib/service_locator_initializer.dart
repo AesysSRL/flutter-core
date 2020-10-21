@@ -10,7 +10,7 @@ void getItInitialization(CoreRouter appRouter, AppErrorDelegate errorDefaultMess
   repositories();
   useCases();
   getIt
-    ..registerSingleton<Connectivity>(Connectivity())
-    ..registerSingleton<CoreRouter>(appRouter)
-    ..registerSingleton<AppErrorDelegate>(errorDefaultMessages);
+    ..registerSingleton<Connectivity>(Connectivity(), signalsReady: true)
+    ..registerSingleton<CoreRouter>(appRouter, signalsReady: true)
+    ..registerSingleton<AppErrorDelegate>(errorDefaultMessages, signalsReady: true);
 }
