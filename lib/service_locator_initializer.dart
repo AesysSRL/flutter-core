@@ -1,21 +1,16 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_core/router/core-router.dart';
-import 'package:flutter_core/router/navigator_service.dart';
 import 'package:get_it/get_it.dart';
 
 import 'error_mapping/app_error.dart';
 
-final GetIt getIt = GetIt.instance;
-
 void getItInitialization(CoreRouter appRouter, AppErrorDelegate errorDefaultMessages, VoidCallback dataSources, VoidCallback repositories, VoidCallback useCases) {
-  getIt
-    ..registerSingleton<Connectivity>(Connectivity(), signalsReady: true)
-    ..registerSingleton<CoreRouter>(appRouter, signalsReady: true)
-    ..registerSingleton<AppErrorDelegate>(errorDefaultMessages, signalsReady: true)
-    ..registerSingleton<NavigationService>(NavigationService(), signalsReady: true);
-
   dataSources();
   repositories();
   useCases();
+  GetIt.I
+    ..registerSingleton<Connectivity>(Connectivity())
+    ..registerSingleton<CoreRouter>(appRouter)
+    ..registerSingleton<AppErrorDelegate>(errorDefaultMessages);
 }
