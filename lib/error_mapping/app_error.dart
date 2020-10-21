@@ -7,12 +7,12 @@ class AppError {
 
   AppError({this.code, @required this.message});
 
-  factory AppError.genericError() => AppError(code: 0, message: GetIt.I.get<AppErrorDelegate>().genericErrorMessage());
+  factory AppError.genericError() => AppError(code: 0, message: GetIt.I<AppErrorDelegate>().genericErrorMessage());
 
-  factory AppError.offline() => AppError(code: 1, message: GetIt.I.get<AppErrorDelegate>().offlineErrorMessage());
+  factory AppError.offline() => AppError(code: 1, message: GetIt.I<AppErrorDelegate>().offlineErrorMessage());
 
   factory AppError.fromException(e) {
-    return GetIt.I.get<AppErrorDelegate>().appErrorFromException(e);
+    return GetIt.I<AppErrorDelegate>().appErrorFromException(e);
   }
 }
 

@@ -13,10 +13,11 @@ dependencies:
 
   path: ^1.7.0
   json_annotation: ^3.1.0
+  equatable: ^1.2.5
 
   # http
   dio: ^3.0.10
-  connectivity: ^0.4.9+3
+  connectivity: ^0.4.9+5
   logger: ^0.9.4
 
   # service locator
