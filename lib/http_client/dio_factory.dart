@@ -1,11 +1,8 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:logger/logger.dart';
 
 import '../error_mapping/network_exception.dart';
-
-Logger logger = Logger();
 
 class DioFactory {
   static const String _DEFAULT_DIO = 'default';
