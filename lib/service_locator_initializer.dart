@@ -11,7 +11,7 @@ void getItInitialization(CoreRouter appRouter, AppErrorDelegate errorDefaultMess
   repositories();
   useCases();
   getIt
-    ..registerSingleton<NavigationService>(NavigationService())
+    ..registerSingleton<NavigatorService>(NavigatorService())
     ..registerSingleton<Connectivity>(Connectivity())
     ..registerSingleton<CoreRouter>(appRouter)
     ..registerSingleton<AppErrorDelegate>(errorDefaultMessages);

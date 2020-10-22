@@ -1,10 +1,10 @@
 
 import 'package:flutter/widgets.dart';
 
-class NavigationService {
+class NavigatorService {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  Future<T> pushNamed<T extends Object>(String routeName) {
-    return navigatorKey.currentState.pushNamed(routeName);
+  Future<T> pushNamed<T extends Object>(String routeName, {Object arguments,}) {
+    return navigatorKey.currentState.pushNamed(routeName, arguments: arguments);
   }
   Future<T> pushNamedAndRemoveUntil<T extends Object>(String routeName, RoutePredicate predicate) {
     return navigatorKey.currentState.pushNamedAndRemoveUntil(routeName, predicate);
