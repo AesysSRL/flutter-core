@@ -20,11 +20,11 @@ class NavigatorService {
     return navigatorKey.currentState.popAndPushNamed(routeName, result: result, arguments: arguments);
   }
 
-  void pop<T extends Object>(BuildContext context, [ T result ]) {
+  void pop<T extends Object>([ T result ]) {
     navigatorKey.currentState.pop<T>(result);
   }
 
-  void popUntil(BuildContext context, RoutePredicate predicate) {
+  void popUntil(RoutePredicate predicate) {
     navigatorKey.currentState.popUntil(predicate);
   }
 }
