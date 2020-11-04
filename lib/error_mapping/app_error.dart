@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 import '../flutter_core.dart';
 
-class AppError {
+class AppError extends Equatable {
   final int code;
   final String message;
 
@@ -15,6 +16,9 @@ class AppError {
   factory AppError.fromException(e) {
     return getIt<AppErrorDelegate>().appErrorFromException(e);
   }
+
+  @override
+  List<Object> get props => [code, message];
 }
 
 class AppErrorDelegate {
