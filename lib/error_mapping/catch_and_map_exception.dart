@@ -2,7 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:get_it/get_it.dart';
 
-import '../error_mapping/app_error.dart';
+import 'app_error.dart';
 
 Future<Either<AppError, R>> checkConnectionAndCatchException<R>(Function call) async {
   var connectivityResult = (await catchException(GetIt.I<Connectivity>().checkConnectivity)).fold((l) => ConnectivityResult.none, (r) => r);
