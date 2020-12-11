@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_core/clean/view_models.dart';
+import 'package:flutter_core/clean/model.dart';
 
-@Deprecated('Unnecessary class')
+@Deprecated('')
 abstract class PaginationModel<T extends Model> extends Equatable{
 
 }

@@ -1,4 +1,4 @@
 import 'package:equatable/equatable.dart';
 
-@Deprecated('User [RequestEntity]')
+@Deprecated('')
 abstract class FilterOptions extends Equatable {}

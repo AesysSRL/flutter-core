@@ -1,9 +1,8 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 import '../flutter_core.dart';
 
-class AppError extends Equatable {
+class AppError {
   final int code;
   final String message;
 
@@ -18,7 +17,12 @@ class AppError extends Equatable {
   }
 
   @override
-  List<Object> get props => [code, message];
+  bool operator ==(o) => o is AppError &&  o.code == code && o.message == message;
+
+  @override
+  String toString() {
+    return 'code: $code, message: $message';
+  }
 }
 
 class AppErrorDelegate {
