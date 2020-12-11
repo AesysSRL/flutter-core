@@ -5,11 +5,12 @@ import 'package:flutter_core/router/core-router.dart';
 import 'package:flutter_core/router/navigator_service.dart';
 
 import 'error_mapping/app_error.dart';
-
-void getItInitialization(CoreRouter appRouter, AppErrorDelegate errorDefaultMessages, VoidCallback dataSources, VoidCallback repositories, VoidCallback useCases) {
-  dataSources();
-  repositories();
-  useCases();
+void registerDependencies(
+    CoreRouter appRouter,
+    AppErrorDelegate errorDefaultMessages,
+    VoidCallback dependencies
+    ) {
+  dependencies();
   getIt
     ..registerSingleton<NavigatorService>(NavigatorService())
     ..registerSingleton<Connectivity>(Connectivity())

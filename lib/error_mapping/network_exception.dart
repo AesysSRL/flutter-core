@@ -10,4 +10,12 @@ class NetworkException extends DioError {
     @required this.message,
     @required this.code
   });
+
+  @override
+  bool operator ==(o) => o is NetworkException &&  o.code == code && o.message == message;
+
+  @override
+  String toString() {
+    return 'code: $code, message: $message';
+  }
 }
