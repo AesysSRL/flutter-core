@@ -1,7 +1,6 @@
-name: flutter_core
-description: The core of all flutter project
+name: clean_architecture_core
+description: The core of all clean architecture flutter projects
 version: 1.0.0
-author: Camillo Bucciarelli
 
 environment:
   sdk: ">=2.10.0 <3.0.0"
@@ -13,7 +12,6 @@ dependencies:
 
   path: ^1.7.0
   json_annotation: ^3.1.1
-  equatable: ^1.2.5
 
   # http
   dio: ^3.0.10
@@ -32,6 +30,5 @@ dev_dependencies:
     sdk: flutter
 
   pedantic: ^1.9.2
-  mockito: ^4.1.3
 
 flutter:

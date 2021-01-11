@@ -1,6 +1,5 @@
+import 'package:clean_architecture_core/clean_architecture_core.dart';
 import 'package:flutter/foundation.dart';
-
-import '../flutter_core.dart';
 
 class AppError {
   final int code;

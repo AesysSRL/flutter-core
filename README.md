@@ -1,4 +1,4 @@
-# flutter_core
+# clean_architecture_core
 
 The core of all flutter project
 
