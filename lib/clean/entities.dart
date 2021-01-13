@@ -1,7 +1,6 @@
-
-abstract class RequestEntity {
+abstract class Request {
   Map<String, dynamic> toJson();
 }
 
-abstract class ResponseEntity {
+abstract class Response {
 }

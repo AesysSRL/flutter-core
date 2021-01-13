@@ -1,5 +1,5 @@
 
-import 'package:clean_architecture_core/clean/entity.dart';
+import 'package:clean_architecture_core/clean/entities.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 abstract class RequestConverter<T extends Request>
