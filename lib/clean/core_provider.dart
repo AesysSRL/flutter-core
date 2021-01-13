@@ -9,4 +9,6 @@ abstract class CoreProvider<S> with ChangeNotifier {
     _state = newState;
     notifyListeners();
   }
+
+  CoreProvider({@required S initialState}) : _state = initialState;
 }
