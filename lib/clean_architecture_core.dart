@@ -25,11 +25,11 @@ export 'package:clean_architecture_core/utilities/extension.dart';
 GetIt getIt = GetIt.I;
 
 class Core {
-  static void init(
+  static void init({
     CoreRouter appRouter,
     AppErrorDelegate appErrorDelegate,
     VoidCallback dependencies,
-  ) {
+  }) {
     registerDependencies(appRouter, appErrorDelegate, dependencies);
   }
 }
