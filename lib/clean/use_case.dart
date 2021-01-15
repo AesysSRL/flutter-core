@@ -3,18 +3,34 @@ import 'package:dartz/dartz.dart';
 
 abstract class UseCase {}
 
-abstract class AsyncUseCaseWithErrorHandling<I, R> extends UseCase {
-  Future<Either<AppError, R>> call([I param]);
+abstract class EitherAsyncUseCase<R> extends UseCase {
+  Future<Either<AppError, R>> call();
 }
 
-abstract class AsyncUseCase<I, R> extends UseCase {
-  Future<R> call([I param]);
+abstract class AsyncUseCase<R> extends UseCase {
+  Future<R> call();
 }
 
-abstract class SyncUseCaseWithErrorHandling<I, R> extends UseCase {
-  Either<AppError, R> call([I param]);
+abstract class EitherSyncUseCase<R> extends UseCase {
+  Either<AppError, R> call();
 }
 
-abstract class SyncUseCase<I, R> extends UseCase {
-  R call([I param]);
+abstract class SyncUseCase<R> extends UseCase {
+  R call();
+}
+
+abstract class EitherAsyncUseCaseParam<I, R> extends UseCase {
+  Future<Either<AppError, R>> call(I param);
+}
+
+abstract class AsyncUseCaseParam<I, R> extends UseCase {
+  Future<R> call(I param);
+}
+
+abstract class EitherSyncUseCaseParam<I, R> extends UseCase {
+  Either<AppError, R> call(I param);
+}
+
+abstract class SyncUseCaseParam<I, R> extends UseCase {
+  R call(I param);
 }
