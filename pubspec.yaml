@@ -25,7 +25,7 @@ dependencies:
 
   # notifications
   firebase_core: any
-  firebase_messaging: ^7.0.3
+  firebase_messaging: any
 
 dev_dependencies:
   flutter_test:
