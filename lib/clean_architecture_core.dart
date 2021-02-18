@@ -1,6 +1,7 @@
 library clean_architecture_core;
 
 import 'package:clean_architecture_core/error_mapping/app_error.dart';
+import 'package:clean_architecture_core/router/core_router.dart';
 import 'package:clean_architecture_core/service_locator_initializer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
@@ -26,7 +27,8 @@ class Core {
   static void init({
     AppErrorDelegate appErrorDelegate,
     VoidCallback dependencies,
+    CoreRouter router
   }) {
-    registerDependencies(appErrorDelegate, dependencies);
+    registerDependencies(router, appErrorDelegate, dependencies);
   }
 }
