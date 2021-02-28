@@ -5,6 +5,7 @@ import 'package:clean_architecture_core/router/navigator_service.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
+
 export 'package:clean_architecture_core/clean/core_provider.dart';
 export 'package:clean_architecture_core/clean/data_source.dart';
 export 'package:clean_architecture_core/clean/entities.dart';
@@ -20,6 +21,8 @@ export 'package:clean_architecture_core/router/core_router.dart';
 export 'package:clean_architecture_core/router/navigator_service.dart';
 export 'package:clean_architecture_core/utilities/catch_and_map_exception.dart';
 export 'package:clean_architecture_core/utilities/extension.dart';
+
+final getIt = GetIt.I;
 
 class Core {
   static GetIt getIt;
