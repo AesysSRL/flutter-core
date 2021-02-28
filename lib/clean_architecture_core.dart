@@ -3,7 +3,6 @@ library clean_architecture_core;
 import 'package:clean_architecture_core/error_mapping/app_error.dart';
 import 'package:clean_architecture_core/router/navigator_service.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
 export 'package:clean_architecture_core/clean/core_provider.dart';
@@ -25,11 +24,9 @@ export 'package:clean_architecture_core/utilities/extension.dart';
 final getIt = GetIt.I;
 
 class Core {
-  static GetIt getIt;
 
-  static void init({@required GetIt getItInstance, @required AppErrorMessageDelegate appErrorMessageDelegate}) {
-    getIt = getItInstance;
-    Core.getIt
+  static void init(AppErrorMessageDelegate appErrorMessageDelegate) {
+    getIt
       ..registerLazySingleton<NavigatorService>(() => NavigatorService())
       ..registerLazySingleton<Connectivity>(() => Connectivity())
       ..registerLazySingleton<AppErrorMessageDelegate>(() => appErrorMessageDelegate);
