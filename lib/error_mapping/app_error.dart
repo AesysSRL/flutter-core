@@ -7,16 +7,19 @@ class AppError {
 
   AppError({this.code, @required this.message});
 
-  factory AppError.genericError() => AppError(code: 0, message: getIt<AppErrorDelegate>().genericErrorMessage());
+  factory AppError.genericError() => AppError(code: 0, message: Core.getIt?.call<AppErrorMessageDelegate>()?.genericErrorMessage());
 
-  factory AppError.offline() => AppError(code: 1, message: getIt<AppErrorDelegate>().offlineErrorMessage());
+  factory AppError.offline() => AppError(code: 1, message: Core.getIt?.call<AppErrorMessageDelegate>()?.offlineErrorMessage());
 
   factory AppError.fromException(e) {
-    return getIt<AppErrorDelegate>().appErrorFromException(e);
+    return Core.getIt?.call<AppErrorMessageDelegate>()?.appErrorFromException(e);
   }
 
   @override
-  bool operator ==(o) => o is AppError &&  o.code == code && o.message == message;
+  bool operator ==(o) => o is AppError &&  o.hashCode == hashCode;
+
+  @override
+  int get hashCode => code.hashCode + message.hashCode;
 
   @override
   String toString() {
@@ -24,12 +27,12 @@ class AppError {
   }
 }
 
-class AppErrorDelegate {
+class AppErrorMessageDelegate {
   final TranslateFunction genericErrorMessage;
   final TranslateFunction offlineErrorMessage;
   final AppErrorFromExceptionFunction appErrorFromException;
 
-  const AppErrorDelegate({@required this.genericErrorMessage, @required this.offlineErrorMessage, @required this.appErrorFromException});
+  const AppErrorMessageDelegate({@required this.genericErrorMessage, @required this.offlineErrorMessage, @required this.appErrorFromException});
 }
 
 typedef TranslateFunction = String Function();

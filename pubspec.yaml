@@ -14,7 +14,7 @@ dependencies:
 
   # http
   dio: ^3.0.10
-  connectivity: ^2.0.2
+  connectivity: ^3.0.0
 
   # service locator
   get_it: '>=5.0.6 <=6.0.0'
