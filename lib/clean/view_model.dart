@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 
 abstract class ViewModel<S> {
   @protected
-  final Rx<S> _state;
+  final Rx<S> $state;
 
-  Rx<S> get state => _state;
+  Rx<S> get state => $state;
 
-  ViewModel(S initialState) : _state = Rx<S>(initialState);
+  ViewModel(S initialState) : $state = Rx<S>(initialState);
 }
