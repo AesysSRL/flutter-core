@@ -5,11 +5,11 @@ import 'package:clean_architecture_core/router/navigator_service.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:get_it/get_it.dart';
 
-export 'package:clean_architecture_core/clean/core_provider.dart';
 export 'package:clean_architecture_core/clean/data_source.dart';
 export 'package:clean_architecture_core/clean/entities.dart';
 export 'package:clean_architecture_core/clean/repository.dart';
 export 'package:clean_architecture_core/clean/use_case.dart';
+export 'package:clean_architecture_core/clean/view_model.dart';
 export 'package:clean_architecture_core/error_mapping/app_error.dart';
 export 'package:clean_architecture_core/error_mapping/network_exception.dart';
 export 'package:clean_architecture_core/http_client/authorization_interceptor.dart';
