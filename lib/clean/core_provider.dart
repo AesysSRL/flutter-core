@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+@deprecated
 abstract class CoreProvider<S> with ChangeNotifier {
   S _state;
 
