@@ -23,3 +23,9 @@ extension $Number<E> on num {
 
   bool get isNotNull => this != null;
 }
+
+extension $Object on Object {
+  bool get isNull => this == null;
+
+  bool get isNotNull => this != null;
+}
