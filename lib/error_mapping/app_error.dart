@@ -1,22 +1,19 @@
 import 'package:clean_architecture_core/clean_architecture_core.dart';
-import 'package:flutter/foundation.dart';
 
 class AppError {
   final int code;
   final String message;
 
-  AppError({this.code, @required this.message});
+  AppError({this.code = 999, required this.message});
 
-  factory AppError.genericError() => AppError(code: 0, message: getIt<AppErrorMessageDelegate>()?.genericErrorMessage());
+  factory AppError.genericError() => AppError(code: 0, message: getIt<AppErrorMessageDelegate>().genericErrorMessage());
 
-  factory AppError.offline() => AppError(code: 1, message: getIt<AppErrorMessageDelegate>()?.offlineErrorMessage());
+  factory AppError.offline() => AppError(code: 1, message: getIt<AppErrorMessageDelegate>().offlineErrorMessage());
 
-  factory AppError.fromException(e) {
-    return getIt<AppErrorMessageDelegate>()?.appErrorFromException(e);
-  }
+  factory AppError.fromException(e) => getIt<AppErrorMessageDelegate>().appErrorFromException(e);
 
   @override
-  bool operator ==(o) => o is AppError &&  o.hashCode == hashCode;
+  bool operator ==(o) => o is AppError && o.hashCode == hashCode;
 
   @override
   int get hashCode => code.hashCode + message.hashCode;
@@ -32,7 +29,11 @@ class AppErrorMessageDelegate {
   final TranslateFunction offlineErrorMessage;
   final AppErrorFromExceptionFunction appErrorFromException;
 
-  const AppErrorMessageDelegate({@required this.genericErrorMessage, @required this.offlineErrorMessage, @required this.appErrorFromException});
+  const AppErrorMessageDelegate({
+    required this.genericErrorMessage,
+    required this.offlineErrorMessage,
+    required this.appErrorFromException,
+  });
 }
 
 typedef TranslateFunction = String Function();

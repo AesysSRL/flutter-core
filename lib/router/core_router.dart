@@ -5,5 +5,5 @@ abstract class CoreRouter {
 
   CoreRouter(this.initialRoute);
 
-  RouteFactory generateAppRoute;
+  Route<dynamic>? Function(RouteSettings settings);
 }

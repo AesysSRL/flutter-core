@@ -1,7 +1,7 @@
 library clean_architecture_core;
 
 import 'package:clean_architecture_core/error_mapping/app_error.dart';
-import 'package:clean_architecture_core/router/navigator_service.dart';
+import 'package:clean_architecture_core/router/core_navigator.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,8 +16,8 @@ export 'package:clean_architecture_core/http_client/authorization_interceptor.da
 export 'package:clean_architecture_core/http_client/dio_factory.dart';
 export 'package:clean_architecture_core/response_wrapper/converter.dart';
 export 'package:clean_architecture_core/response_wrapper/response_wrapper.dart';
+export 'package:clean_architecture_core/router/core_navigator.dart';
 export 'package:clean_architecture_core/router/core_router.dart';
-export 'package:clean_architecture_core/router/navigator_service.dart';
 export 'package:clean_architecture_core/utilities/catch_and_map_exception.dart';
 export 'package:clean_architecture_core/utilities/extension.dart';
 
@@ -27,7 +27,7 @@ class Core {
 
   static void init(AppErrorMessageDelegate appErrorMessageDelegate) {
     getIt
-      ..registerLazySingleton<NavigatorService>(() => NavigatorService())
+      ..registerLazySingleton<CoreNavigator>(() => CoreNavigator())
       ..registerLazySingleton<Connectivity>(() => Connectivity())
       ..registerLazySingleton<AppErrorMessageDelegate>(() => appErrorMessageDelegate);
   }

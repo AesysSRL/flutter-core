@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class NetworkException extends DioError {
   @override
@@ -7,8 +6,8 @@ class NetworkException extends DioError {
   int code;
 
   NetworkException({
-    @required this.message,
-    @required this.code
+    required this.message,
+    required this.code
   });
 
   @override

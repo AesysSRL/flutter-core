@@ -11,13 +11,11 @@ class DioFactory {
   // ---------------------------------------------------------------------------
   //                                                    Singleton initialization
   // ---------------------------------------------------------------------------
-  static final DioFactory _instance = DioFactory._internal();
+  static final DioFactory _instance = DioFactory._();
 
-  factory DioFactory() {
-    return _instance;
-  }
+  DioFactory get instance => _instance;
 
-  DioFactory._internal();
+  DioFactory._();
 
   // ---------------------------------------------------------------------------
   //                                                       Dio instances manager
@@ -36,13 +34,12 @@ class DioFactory {
 
   Dio getDioInstance([String dioInstanceName = _DEFAULT_DIO]) {
     if (_dioInstances.isEmpty) {
-      throw Exception(
-          'no Dio has been evocated, have to call initilize() or newDioInstance()');
+      throw Exception('no Dio has been evocated, have to call initilize() or newDioInstance()');
     }
     if (!_dioInstances.containsKey(dioInstanceName)) {
       throw Exception('there is no Dio with this name');
     }
-    return _dioInstances[dioInstanceName];
+    return _dioInstances[dioInstanceName]!;
   }
 
   int getNumberOfDioInstances() {
@@ -51,53 +48,46 @@ class DioFactory {
 }
 
 class ErrorMapperInterceptor extends Interceptor {
-
   @override
   Future onError(DioError dioError) {
     dioError = NetworkException(
-        message: dioError.response.statusMessage,
-        code: dioError.response.statusCode);
+        message: dioError.response?.statusMessage ?? 'Generic network exception',
+        code: dioError.response?.statusCode ?? 999);
     return super.onError(dioError);
   }
 }
 
-
 class LoggingInterceptors extends Interceptor {
   @override
   Future onRequest(RequestOptions options) {
-    print(
-        "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
+    print('--> ${options.method.toUpperCase()} ${'' + (options.baseUrl) + (options.path)}');
     print('Headers:');
     options.headers.forEach((k, v) => print('$k: $v'));
-    if (options.queryParameters != null) {
+    if (options.queryParameters.isNotEmpty) {
       print('queryParameters:');
       options.queryParameters.forEach((k, v) => print('$k: $v'));
     }
     if (options.data != null) {
       printWrapped('Body: ${options.data}');
     }
-    print(
-        "--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
+    print('--> END ${options.method.toUpperCase()}');
 
     return super.onRequest(options);
   }
 
   @override
   Future onError(DioError dioError) {
-    print(
-        "<-- ${dioError.message} ${(dioError.response?.request != null ? (dioError.response.request.baseUrl + dioError.response.request.path) : 'URL')}");
-    print(
-        "${dioError.response != null ? dioError.response.data : 'Unknown Error'}");
+    print('<-- ${dioError.message} ${(dioError.response?.request != null ? '${dioError.response!.request.baseUrl}${dioError.response!.request.path}' : 'URL')}');
+    print('${dioError.response?.data != null ? dioError.response!.data : 'Unknown Error'}');
     print('<-- End error');
     return super.onError(dioError);
   }
 
   @override
   Future onResponse(Response response) {
-    print(
-        "<-- ${response.statusCode} ${(response.request != null ? (response.request.baseUrl + response.request.path) : 'URL')}");
+    print('<-- ${response.statusCode} ${response.request.baseUrl}${response.request.path}');
     print('Headers:');
-    response.headers?.forEach((k, v) => print('$k: $v'));
+    response.headers.forEach((k, v) => print('$k: $v'));
     printWrapped('Response: ${response.data}');
     print('<-- END HTTP');
     return super.onResponse(response);

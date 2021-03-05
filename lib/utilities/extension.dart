@@ -3,28 +3,24 @@ extension StringExtension on String {
 }
 
 extension $Iterable<E> on Iterable<E> {
-  E get firstOrNull {
+  E? get firstOrNull {
     if(isNotEmpty) return first;
     return null;
   }
 
-  E get lastOrNull {
+  E? get lastOrNull {
     if(isNotEmpty) return last;
     return null;
   }
-
-  E firstWhereOrNull(bool Function(E element) test) {
-    return firstWhere(test, orElse: () => null);
-  }
 }
 
-extension $Number<E> on num {
+extension $Number<E> on num? {
   bool get isNull => this == null;
 
   bool get isNotNull => this != null;
 }
 
-extension $Object on Object {
+extension $Object on Object? {
   bool get isNull => this == null;
 
   bool get isNotNull => this != null;

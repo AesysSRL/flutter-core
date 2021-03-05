@@ -4,5 +4,5 @@ import 'package:clean_architecture_core/clean_architecture_core.dart';
 abstract class Repository<T extends DataSource> {
    final T dataSource;
 
-   Repository({String dataSourceInstanceName}) : dataSource = getIt<T>(instanceName: dataSourceInstanceName);
+   Repository([String? dataSourceInstanceName]) : dataSource = getIt<T>(instanceName: dataSourceInstanceName);
 }
