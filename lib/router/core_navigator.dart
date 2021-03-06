@@ -1,7 +1,7 @@
 import 'package:clean_architecture_core/clean_architecture_core.dart';
 import 'package:flutter/widgets.dart';
 
-CoreNavigator get navigator => getIt<CoreNavigator>(instanceName: 'root');
+CoreNavigator get navigation => getIt<CoreNavigator>(instanceName: 'root');
 
 class CoreNavigator {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
