@@ -1,4 +1,4 @@
-extension StringExtension on String {
+extension $String on String {
   bool isValidEmail() => RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(this);
 }
 
@@ -14,10 +14,10 @@ extension $Iterable<E> on Iterable<E> {
   }
 }
 
-extension $Number<E> on num? {
-  bool get isNull => this == null;
+extension $StringNullable on String? {
+  bool get isNullOrEmpty => this == null || this == '';
 
-  bool get isNotNull => this != null;
+  bool get isNotNullOrEmpty => this != null || this != '';
 }
 
 extension $Object on Object? {
