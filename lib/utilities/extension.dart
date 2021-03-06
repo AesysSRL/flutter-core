@@ -22,9 +22,9 @@ extension $StringNullable on String? {
 }
 
 extension $Object on Object? {
-  void run<T>(void Function<T>(T obj) call) {
-    if(this != null) {
-      call(this);
+  void run<T>(void Function(T obj) call) {
+    if(this is T && this != null) {
+      call(this as T);
     }
   }
 }
