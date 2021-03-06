@@ -1,8 +1,17 @@
+import 'package:clean_architecture_core/clean_architecture_core.dart';
 import 'package:flutter/widgets.dart';
 
 class CoreNavigator {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
+
+  static CoreNavigator navigator({String ref = 'root'}) => getIt<CoreNavigator>(instanceName: ref);
+
+  static void registerNavigator({required String ref}) => getIt.registerLazySingleton<CoreNavigator>(
+        () => CoreNavigator(),
+        instanceName: ref,
+      );
 
   Future<T?> pushNamed<T extends Object>(String routeName, {Object? arguments}) async {
     final result = await _navigatorKey.currentState?.pushNamed<T>(routeName, arguments: arguments);

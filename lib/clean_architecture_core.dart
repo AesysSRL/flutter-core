@@ -27,7 +27,7 @@ class Core {
 
   static void init(AppErrorMessageDelegate appErrorMessageDelegate) {
     getIt
-      ..registerLazySingleton<CoreNavigator>(() => CoreNavigator())
+      ..registerLazySingleton<CoreNavigator>(() => CoreNavigator(), instanceName: 'root')
       ..registerLazySingleton<Connectivity>(() => Connectivity())
       ..registerLazySingleton<AppErrorMessageDelegate>(() => appErrorMessageDelegate);
   }
