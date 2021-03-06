@@ -1,12 +1,14 @@
 import 'package:clean_architecture_core/clean_architecture_core.dart';
 import 'package:flutter/widgets.dart';
 
+CoreNavigator get navigator => getIt<CoreNavigator>(instanceName: 'root');
+
 class CoreNavigator {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 
-  static CoreNavigator navigator({String ref = 'root'}) => getIt<CoreNavigator>(instanceName: ref);
+  static CoreNavigator instance({required String ref}) => getIt<CoreNavigator>(instanceName: ref);
 
   static void registerNavigator({required String ref}) => getIt.registerLazySingleton<CoreNavigator>(
         () => CoreNavigator(),
