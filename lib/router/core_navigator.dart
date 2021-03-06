@@ -1,7 +1,7 @@
 import 'package:clean_architecture_core/clean_architecture_core.dart';
 import 'package:flutter/widgets.dart';
 
-CoreNavigator get navigation => getIt<CoreNavigator>(instanceName: 'root');
+CoreNavigator get navigator => getIt<CoreNavigator>(instanceName: 'root');
 
 class CoreNavigator {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
@@ -23,8 +23,8 @@ class CoreNavigator {
     return null;
   }
 
-  Future<T?> pushNamedAndRemoveUntil<T extends Object>(String routeName, RoutePredicate predicate) async {
-    final result = await _navigatorKey.currentState?.pushNamedAndRemoveUntil<T>(routeName, predicate);
+  Future<T?> pushNamedAndRemoveUntil<T extends Object>(String routeName, RoutePredicate predicate, {Object? arguments}) async {
+    final result = await _navigatorKey.currentState?.pushNamedAndRemoveUntil<T>(routeName, predicate, arguments: arguments);
     if (result != null && result is T) {
       return result;
     }
