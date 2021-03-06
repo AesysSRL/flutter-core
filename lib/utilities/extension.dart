@@ -21,10 +21,17 @@ extension $StringNullable on String? {
   bool get isNotNullOrEmpty => this != null || this != '';
 }
 
-extension $Object on Object? {
-  void run<T>(void Function(T value) call) {
-    if(this is T && this != null) {
-      call(this as T);
-    }
+ReturnType run<ReturnType>(ReturnType Function() operation) {
+  return operation();
+}
+
+extension ScopeFunctionsForObject<T extends Object> on T {
+  E let<E>(E Function(T self) operation_for) {
+    return operation_for(this);
+  }
+
+  T also(void Function(T self) operation_for) {
+    operation_for(this);
+    return this;
   }
 }
