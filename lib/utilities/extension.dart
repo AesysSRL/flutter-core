@@ -76,11 +76,11 @@ ReturnType run<ReturnType>(ReturnType Function() operation) {
 }
 
 extension ScopeFunctionsForObject<T extends Object> on T {
-  E let<E>(E Function(T self) operation_for) {
+  E let<E>(E Function(T value) operation_for) {
     return operation_for(this);
   }
 
-  T also(void Function(T self) operation_for) {
+  T also(void Function(T value) operation_for) {
     operation_for(this);
     return this;
   }
