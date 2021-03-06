@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
@@ -26,7 +27,7 @@ class DioFactory {
   }
 
   DioFactory newDioInstance(String dioInstanceName, Interceptor interceptor) {
-    var dioInstance = Dio();
+    final dioInstance = Dio();
     dioInstance.interceptors.add(LoggingInterceptors());
     _dioInstances[dioInstanceName] = dioInstance..interceptors.add(interceptor);
     return _instance;
@@ -60,41 +61,41 @@ class ErrorMapperInterceptor extends Interceptor {
 class LoggingInterceptors extends Interceptor {
   @override
   Future onRequest(RequestOptions options) {
-    print('--> ${options.method.toUpperCase()} ${'' + (options.baseUrl) + (options.path)}');
-    print('Headers:');
-    options.headers.forEach((k, v) => print('$k: $v'));
+    log('--> ${options.method.toUpperCase()} ${'' + (options.baseUrl) + (options.path)}');
+    log('Headers:');
+    options.headers.forEach((k, v) => log('$k: $v'));
     if (options.queryParameters.isNotEmpty) {
-      print('queryParameters:');
-      options.queryParameters.forEach((k, v) => print('$k: $v'));
+      log('queryParameters:');
+      options.queryParameters.forEach((k, v) => log('$k: $v'));
     }
     if (options.data != null) {
-      printWrapped('Body: ${options.data}');
+      logWrapped('Body: ${options.data}');
     }
-    print('--> END ${options.method.toUpperCase()}');
+    log('--> END ${options.method.toUpperCase()}');
 
     return super.onRequest(options);
   }
 
   @override
   Future onError(DioError dioError) {
-    print('<-- ${dioError.message} ${(dioError.response?.request != null ? '${dioError.response!.request.baseUrl}${dioError.response!.request.path}' : 'URL')}');
-    print('${dioError.response?.data != null ? dioError.response!.data : 'Unknown Error'}');
-    print('<-- End error');
+    log('<-- ${dioError.message} ${(dioError.response?.request != null ? '${dioError.response!.request.baseUrl}${dioError.response!.request.path}' : 'URL')}');
+    log('${dioError.response?.data != null ? dioError.response!.data : 'Unknown Error'}');
+    log('<-- End error');
     return super.onError(dioError);
   }
 
   @override
   Future onResponse(Response response) {
-    print('<-- ${response.statusCode} ${response.request.baseUrl}${response.request.path}');
-    print('Headers:');
-    response.headers.forEach((k, v) => print('$k: $v'));
-    printWrapped('Response: ${response.data}');
-    print('<-- END HTTP');
+    log('<-- ${response.statusCode} ${response.request.baseUrl}${response.request.path}');
+    log('Headers:');
+    response.headers.forEach((k, v) => log('$k: $v'));
+    logWrapped('Response: ${response.data}');
+    log('<-- END HTTP');
     return super.onResponse(response);
   }
 }
 
-void printWrapped(String text) {
+void logWrapped(String text) {
   final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
-  pattern.allMatches(text).forEach((match) => print(match.group(0)));
+  pattern.allMatches(text).forEach((match) => log(match.group(0) ?? ''));
 }

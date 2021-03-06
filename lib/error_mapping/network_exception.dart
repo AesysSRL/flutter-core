@@ -17,4 +17,8 @@ class NetworkException extends DioError {
   String toString() {
     return 'code: $code, message: $message';
   }
+
+  @override
+  int get hashCode => code.hashCode + message.hashCode;
+
 }
