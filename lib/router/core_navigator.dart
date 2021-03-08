@@ -23,8 +23,10 @@ class CoreNavigator {
     return null;
   }
 
-  Future<T?> pushNamedAndRemoveUntil<T extends Object>(String routeName, RoutePredicate predicate, {Object? arguments}) async {
-    final result = await _navigatorKey.currentState?.pushNamedAndRemoveUntil<T>(routeName, predicate, arguments: arguments);
+  Future<T?> pushNamedAndRemoveUntil<T extends Object>(String routeName, RoutePredicate predicate,
+      {Object? arguments}) async {
+    final result =
+        await _navigatorKey.currentState?.pushNamedAndRemoveUntil<T>(routeName, predicate, arguments: arguments);
     if (result != null && result is T) {
       return result;
     }
@@ -69,5 +71,13 @@ class CoreNavigator {
 
   void popUntil(RoutePredicate predicate) {
     _navigatorKey.currentState?.popUntil(predicate);
+  }
+
+  Future<bool?> maybePop<T extends Object?>([T? result]) async {
+    final res = await _navigatorKey.currentState?.maybePop(result);
+    if (res != null && res is bool) {
+      return res;
+    }
+    return null;
   }
 }

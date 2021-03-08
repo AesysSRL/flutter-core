@@ -65,13 +65,25 @@ extension $Iterable<E> on Iterable<E> {
   }
 }
 
+extension $IterableNullValue<E extends Object?> on Iterable<E?> {
+  E? get firstOrNull {
+    if(isNotEmpty) return first;
+    return null;
+  }
+
+  E? get lastOrNull {
+    if(isNotEmpty) return last;
+    return null;
+  }
+}
+
 extension $StringNullable on String? {
   bool get isNullOrEmpty => this == null || this == '';
 
   bool get isNotNullOrEmpty => this != null || this != '';
 }
 
-ReturnType run<ReturnType>(ReturnType Function() operation) {
+R run<R>(R Function() operation) {
   return operation();
 }
 
