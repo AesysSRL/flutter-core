@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 
 CoreNavigator get navigator => getIt<CoreNavigator>(instanceName: 'root');
 
+BuildContext? get applicationContext => getIt<CoreNavigator>(instanceName: 'root').navigatorKey.currentContext;
+
 class CoreNavigator {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
