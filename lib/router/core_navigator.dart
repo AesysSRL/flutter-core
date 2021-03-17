@@ -82,4 +82,8 @@ class CoreNavigator {
     }
     return null;
   }
+
+  bool canPop() {
+    return _navigatorKey.currentState?.canPop() ?? false;
+  }
 }
