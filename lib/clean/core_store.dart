@@ -7,7 +7,7 @@ abstract class CoreStore {
     _reactiveDisposers.add(reactionDisposer);
   }
 
-  void resetReaction() {
+  void resetReactions() {
     _reactiveDisposers.forEach((d) => d());
     _reactiveDisposers.clear();
   }
