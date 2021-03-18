@@ -48,10 +48,10 @@ class DioFactory {
 }
 
 class ErrorMapperInterceptor extends Interceptor {
-
   @override
   void onError(DioError dioError, ErrorInterceptorHandler handler) {
     dioError = NetworkException(
+        requestOptions: dioError.requestOptions,
         message: dioError.response?.statusMessage ?? 'Generic network exception',
         code: dioError.response?.statusCode ?? 999);
     super.onError(dioError, handler);
@@ -59,7 +59,6 @@ class ErrorMapperInterceptor extends Interceptor {
 }
 
 class LoggingInterceptors extends Interceptor {
-
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     log('--> ${options.method.toUpperCase()} ${'' + (options.baseUrl) + (options.path)}');
