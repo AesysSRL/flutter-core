@@ -14,7 +14,7 @@ dependencies:
   intl: ^0.17.0
 
   # http
-  dio: ^3.0.10
+  dio: ^4.0.0-prev2
   connectivity: ^3.0.2
 
   # service locator
