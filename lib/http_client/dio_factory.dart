@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -49,18 +48,20 @@ class DioFactory {
 }
 
 class ErrorMapperInterceptor extends Interceptor {
+
   @override
-  Future onError(DioError dioError) {
+  void onError(DioError dioError, ErrorInterceptorHandler handler) {
     dioError = NetworkException(
         message: dioError.response?.statusMessage ?? 'Generic network exception',
         code: dioError.response?.statusCode ?? 999);
-    return super.onError(dioError);
+    super.onError(dioError, handler);
   }
 }
 
 class LoggingInterceptors extends Interceptor {
+
   @override
-  Future onRequest(RequestOptions options) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     log('--> ${options.method.toUpperCase()} ${'' + (options.baseUrl) + (options.path)}');
     log('Headers:');
     options.headers.forEach((k, v) => log('$k: $v'));
@@ -72,26 +73,25 @@ class LoggingInterceptors extends Interceptor {
       logWrapped('Body: ${options.data}');
     }
     log('--> END ${options.method.toUpperCase()}');
-
-    return super.onRequest(options);
+    super.onRequest(options, handler);
   }
 
   @override
-  Future onError(DioError dioError) {
-    log('<-- ${dioError.message} ${(dioError.response?.request != null ? '${dioError.response!.request.baseUrl}${dioError.response!.request.path}' : 'URL')}');
+  void onError(DioError dioError, ErrorInterceptorHandler handler) {
+    log('<-- ${dioError.message} ${dioError.response}');
     log('${dioError.response?.data != null ? dioError.response!.data : 'Unknown Error'}');
     log('<-- End error');
-    return super.onError(dioError);
+    super.onError(dioError, handler);
   }
 
   @override
-  Future onResponse(Response response) {
-    log('<-- ${response.statusCode} ${response.request.baseUrl}${response.request.path}');
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    log('<-- ${response.statusCode} $response');
     log('Headers:');
     response.headers.forEach((k, v) => log('$k: $v'));
     logWrapped('Response: ${response.data}');
     log('<-- END HTTP');
-    return super.onResponse(response);
+    super.onResponse(response, handler);
   }
 }
 
