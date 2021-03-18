@@ -33,7 +33,7 @@ extension $List on List<Widget> {
         return MapEntry(key, [value]);
       }
       return MapEntry(key, [value, SizedBox(height: space)]);
-    }).values.reduce((a, b) => [...a, ...b]).toList();
+    }).values.fold(<Widget>[], (a, b) => [...a, ...b]);
   }
 
   List<Widget> addHorizontalSpacer(double space) {
@@ -42,7 +42,7 @@ extension $List on List<Widget> {
         return MapEntry(key, [value]);
       }
       return MapEntry(key, [value, SizedBox(width: space)]);
-    }).values.reduce((a, b) => [...a, ...b]).toList();
+    }).values.fold(<Widget>[], (a, b) => [...a, ...b]);
   }
 
   List<Widget> addHorizontalDivider(Divider divider) {
@@ -51,7 +51,7 @@ extension $List on List<Widget> {
         return MapEntry(key, [value]);
       }
       return MapEntry(key, [value, divider]);
-    }).values.reduce((a, b) => [...a, ...b]).toList();
+    }).values.fold(<Widget>[], (a, b) => [...a, ...b]);
   }
 
 }
