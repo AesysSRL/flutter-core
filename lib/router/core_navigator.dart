@@ -17,22 +17,19 @@ class CoreNavigator {
         instanceName: ref,
       );
 
-  Future<T?> pushNamed<T extends Object>(String routeName, {Object? arguments}) async {
-    final result = await _navigatorKey.currentState?.pushNamed<T>(routeName, arguments: arguments);
-    if (result != null && result is T) {
-      return result;
-    }
-    return null;
+  Future<T?> pushNamed<T extends Object>(
+    String routeName, {
+    Object? arguments,
+  }) async {
+    return await _navigatorKey.currentState?.pushNamed<T>(routeName, arguments: arguments);
   }
 
-  Future<T?> pushNamedAndRemoveUntil<T extends Object>(String routeName, RoutePredicate predicate,
-      {Object? arguments}) async {
-    final result =
-        await _navigatorKey.currentState?.pushNamedAndRemoveUntil<T>(routeName, predicate, arguments: arguments);
-    if (result != null && result is T) {
-      return result;
-    }
-    return null;
+  Future<T?> pushNamedAndRemoveUntil<T extends Object>(
+    String routeName,
+    RoutePredicate predicate, {
+    Object? arguments,
+  }) async {
+    return await _navigatorKey.currentState?.pushNamedAndRemoveUntil<T>(routeName, predicate, arguments: arguments);
   }
 
   Future<T?> pushReplacementNamed<T extends Object, TO extends Object>(
@@ -40,15 +37,11 @@ class CoreNavigator {
     TO? result,
     Object? arguments,
   }) async {
-    final res = await _navigatorKey.currentState?.pushReplacementNamed<T, TO>(
+    return await _navigatorKey.currentState?.pushReplacementNamed<T, TO>(
       routeName,
       result: result,
       arguments: arguments,
     );
-    if (res != null && res is T) {
-      return res;
-    }
-    return null;
   }
 
   Future<T?> popAndPushNamed<T extends Object, TO extends Object>(
@@ -56,15 +49,27 @@ class CoreNavigator {
     TO? result,
     Object? arguments,
   }) async {
-    final res = await _navigatorKey.currentState?.popAndPushNamed(
+    return await _navigatorKey.currentState?.popAndPushNamed(
       routeName,
       result: result,
       arguments: arguments,
     );
-    if (res != null && res is T) {
-      return res;
-    }
-    return null;
+  }
+
+  Future<T?> push<T extends Object?>(Route<T> route) async {
+    return await _navigatorKey.currentState?.push(route);
+  }
+
+  Future<T?> pushReplacement<T extends Object?, TO extends Object?>(Route<T> newRoute, { TO? result }) async {
+    return await _navigatorKey.currentState?.pushReplacement(newRoute, result: result);
+  }
+
+  Future<T?> pushAndRemoveUntil<T extends Object?>(Route<T> newRoute, RoutePredicate predicate) async {
+    return await _navigatorKey.currentState?.pushAndRemoveUntil(newRoute, predicate);
+  }
+
+  void replace<T extends Object?>({required Route<dynamic> oldRoute, required Route<T> newRoute}) {
+    _navigatorKey.currentState?.replace(oldRoute: oldRoute, newRoute: newRoute);
   }
 
   void pop<T extends Object>([T? result]) {
