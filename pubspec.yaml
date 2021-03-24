@@ -10,16 +10,21 @@ dependencies:
   flutter:
     sdk: flutter
 
-  json_annotation: ^4.0.0
+  json_annotation: ^4.0.1
   intl: ^0.17.0
 
   # http
-  dio: ^4.0.0-prev2
-  connectivity: ^3.0.2
+  dio: ^4.0.0-prev3
+  connectivity: ^3.0.3
 
   # service locator
   get_it: ^6.0.0
   dartz: ^0.10.0-nullsafety.1
+
+  # firestore
+  firebase_core: ^1.0.2
+  cloud_firestore: ^1.0.2
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:

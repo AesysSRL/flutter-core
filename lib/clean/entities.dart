@@ -2,5 +2,4 @@ abstract class Request {
   Map<String, dynamic> toJson();
 }
 
-abstract class Response {
-}
+abstract class Response {}

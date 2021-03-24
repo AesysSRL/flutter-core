@@ -60,7 +60,7 @@ class CoreNavigator {
     return await _navigatorKey.currentState?.push(route);
   }
 
-  Future<T?> pushReplacement<T extends Object?, TO extends Object?>(Route<T> newRoute, { TO? result }) async {
+  Future<T?> pushReplacement<T extends Object?, TO extends Object?>(Route<T> newRoute, {TO? result}) async {
     return await _navigatorKey.currentState?.pushReplacement(newRoute, result: result);
   }
 

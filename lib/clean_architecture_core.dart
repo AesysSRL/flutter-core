@@ -13,6 +13,7 @@ export 'package:clean_architecture_core/clean/repository.dart';
 export 'package:clean_architecture_core/clean/use_case.dart';
 export 'package:clean_architecture_core/error_mapping/app_error.dart';
 export 'package:clean_architecture_core/error_mapping/network_exception.dart';
+export 'package:clean_architecture_core/firestore_cache/firestore_cache_manager.dart';
 export 'package:clean_architecture_core/http_client/authorization_interceptor.dart';
 export 'package:clean_architecture_core/http_client/dio_factory.dart';
 export 'package:clean_architecture_core/response_wrapper/converter.dart';
@@ -25,7 +26,6 @@ export 'package:clean_architecture_core/utilities/extension.dart';
 final getIt = GetIt.I;
 
 class Core {
-
   static void init(AppErrorMessageDelegate appErrorMessageDelegate) {
     getIt
       ..registerLazySingleton<CoreNavigator>(() => CoreNavigator(), instanceName: 'root')
