@@ -78,6 +78,15 @@ extension $Iterable<E> on Iterable<E> {
     if (isNotEmpty) return last;
     return null;
   }
+
+  bool containsAll(Iterable<E> items) {
+    for(final item in items){
+      if(!contains(item)){
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 extension $IterableNullValue<E extends Object?> on Iterable<E?> {
