@@ -23,7 +23,7 @@ extension $Num on num {
   num divide(num divider) => this / divider;
 }
 
-extension $List on List<Widget> {
+extension $ListWidget on List<Widget> {
   List<Widget> addVerticalSpacer(double space) {
     return asMap()
         .map((key, value) {
@@ -98,6 +98,28 @@ extension $IterableNullValue<E extends Object?> on Iterable<E?> {
   E? get lastOrNull {
     if (isNotEmpty) return last;
     return null;
+  }
+}
+
+extension $List<E> on List<E> {
+  bool containsAll(List<E> items) {
+    for(final item in items){
+      if(!contains(item)){
+        return false;
+      }
+    }
+    return true;
+  }
+}
+
+extension $ListNullValue<E extends Object?> on List<E?> {
+  bool containsAll(List<E?> items) {
+    for(final item in items){
+      if(!contains(item)){
+        return false;
+      }
+    }
+    return true;
   }
 }
 
