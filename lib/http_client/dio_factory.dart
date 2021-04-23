@@ -9,27 +9,16 @@ class DioFactory {
   static final Map<String, Dio> _dioInstances = {};
 
   // ---------------------------------------------------------------------------
-  //                                                    Singleton initialization
-  // ---------------------------------------------------------------------------
-  static final DioFactory _instance = DioFactory._();
-
-  static DioFactory get instance => _instance;
-
-  DioFactory._();
-
-  // ---------------------------------------------------------------------------
   //                                                       Dio instances manager
   // ---------------------------------------------------------------------------
-  static DioFactory initialize() {
+  static void initialize() {
     newDioInstance(_DEFAULT_DIO, ErrorMapperInterceptor());
-    return _instance;
   }
 
-  static DioFactory newDioInstance(String dioInstanceName, Interceptor interceptor) {
+  static void newDioInstance(String dioInstanceName, Interceptor interceptor) {
     final dioInstance = Dio();
     if(!kReleaseMode) dioInstance.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
     _dioInstances[dioInstanceName] = dioInstance..interceptors.add(interceptor);
-    return _instance;
   }
 
   static Dio getDioInstance([String dioInstanceName = _DEFAULT_DIO]) {
