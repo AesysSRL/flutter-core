@@ -11,14 +11,14 @@ class DioFactory {
   // ---------------------------------------------------------------------------
   //                                                       Dio instances manager
   // ---------------------------------------------------------------------------
-  static void initialize() {
-    newDioInstance(_DEFAULT_DIO, ErrorMapperInterceptor());
+  static void initialize(List<Interceptor> interceptors) {
+    newDioInstance(_DEFAULT_DIO, interceptors);
   }
 
-  static void newDioInstance(String dioInstanceName, Interceptor interceptor) {
+  static void newDioInstance(String dioInstanceName, List<Interceptor> interceptors) {
     final dioInstance = Dio();
     if(!kReleaseMode) dioInstance.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
-    _dioInstances[dioInstanceName] = dioInstance..interceptors.add(interceptor);
+    _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll(interceptors..add(ErrorMapperInterceptor()));
   }
 
   static Dio getDioInstance([String dioInstanceName = _DEFAULT_DIO]) {
