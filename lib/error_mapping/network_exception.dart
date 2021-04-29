@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:dio/dio.dart';
 
 class NetworkException extends DioError {
@@ -18,4 +20,11 @@ class NetworkException extends DioError {
 
   @override
   int get hashCode => code.hashCode + message.hashCode;
+}
+
+class AppException implements Exception {
+  String message;
+  int code;
+
+  AppException({required this.message, required this.code});
 }
