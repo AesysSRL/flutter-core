@@ -126,7 +126,7 @@ extension $ListNullValue<E extends Object?> on List<E?> {
 extension $StringNullable on String? {
   bool get isNullOrEmpty => this == null || this == '';
 
-  bool get isNotNullOrEmpty => this != null || this != '';
+  bool get isNotNullOrEmpty => this != null && this != '';
 }
 
 R run<R>(R Function() operation) {
