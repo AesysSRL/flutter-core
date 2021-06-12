@@ -19,7 +19,7 @@ dependencies:
 
   # service locator
   get_it:
-  dartz:
+  dartz:  0.10.0-nullsafety.2
 
   shared_preferences:
 
