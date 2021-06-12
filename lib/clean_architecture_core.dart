@@ -22,6 +22,7 @@ export 'package:clean_architecture_core/router/core_router.dart';
 export 'package:clean_architecture_core/utilities/catch_and_map_exception.dart';
 export 'package:clean_architecture_core/utilities/extension.dart';
 export 'package:clean_architecture_core/utilities/jwt_utils.dart';
+export 'package:dartz/dartz.dart';
 
 final getIt = GetIt.I;
 
