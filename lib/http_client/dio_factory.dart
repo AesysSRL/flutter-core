@@ -18,7 +18,7 @@ class DioFactory {
   static void newDioInstance(String dioInstanceName, {List<Interceptor> interceptors = const <Interceptor>[]}) {
     final dioInstance = Dio();
     if(!kReleaseMode) dioInstance.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
-    _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll(interceptors..add(ErrorMapperInterceptor()));
+    _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll([...interceptors, ErrorMapperInterceptor()]);
   }
 
   static Dio getDioInstance([String dioInstanceName = _DEFAULT_DIO]) {
