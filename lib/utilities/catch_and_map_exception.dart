@@ -15,7 +15,7 @@ Future<Either<AppError, R>> catchException<R>(Function call) async {
     final result = await call();
     return Right(result);
   } catch (e) {
-    return Left(AppError.fromException(e));
+    return Left(AppError.fromException(e, call.toString()));
   }
 }
 
@@ -24,6 +24,6 @@ Either<AppError, R> catchExceptionSync<R>(Function call) {
     final result = call();
     return Right(result);
   } catch (e) {
-    return Left(AppError.fromException(e));
+    return Left(AppError.fromException(e, call.toString()));
   }
 }
