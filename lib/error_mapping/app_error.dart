@@ -10,7 +10,7 @@ class AppError {
 
   factory AppError.offline() => AppError(code: 1, message: getIt<AppErrorMessageDelegate>().offlineErrorMessage());
 
-  factory AppError.fromException(e, String? call) => getIt<AppErrorMessageDelegate>().appErrorFromException(e, call: call);
+  factory AppError.fromException(e) => getIt<AppErrorMessageDelegate>().appErrorFromException(e);
 
   @override
   bool operator ==(o) => o is AppError && o.hashCode == hashCode;
@@ -37,6 +37,6 @@ class AppErrorMessageDelegate {
 }
 
 typedef TranslateFunction = String Function();
-typedef AppErrorFromExceptionFunction = AppError Function(dynamic, {String? call});
+typedef AppErrorFromExceptionFunction = AppError Function(dynamic);
 
 typedef OnError = void Function(AppError appError);
