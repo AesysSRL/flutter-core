@@ -12,6 +12,7 @@ dependencies:
 
   json_annotation:
   intl:
+  devicelocale:
 
   # http
   dio:
