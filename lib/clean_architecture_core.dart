@@ -1,13 +1,11 @@
 library clean_architecture_core;
 
-import 'dart:developer';
 
 import 'package:clean_architecture_core/error_mapping/app_error.dart';
 import 'package:clean_architecture_core/router/core_navigator.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:devicelocale/devicelocale.dart';
 import 'package:get_it/get_it.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 export 'package:clean_architecture_core/clean/core_provider.dart';
@@ -36,8 +34,7 @@ final getIt = GetIt.I;
 class Core {
   static Future<void> init(AppErrorMessageDelegate appErrorMessageDelegate) async {
     final deviceLocale = await Devicelocale.currentLocale;
-    Intl.withLocale(deviceLocale, () => log(deviceLocale!));
-    await initializeDateFormatting(deviceLocale);
+    Intl.defaultLocale = deviceLocale;
     getIt
       ..registerLazySingleton<CoreNavigator>(() => CoreNavigator(), instanceName: 'root')
       ..registerLazySingleton<Connectivity>(() => Connectivity())
