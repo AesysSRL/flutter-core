@@ -15,6 +15,8 @@ export 'package:clean_architecture_core/error_mapping/app_error.dart';
 export 'package:clean_architecture_core/error_mapping/network_exception.dart';
 export 'package:clean_architecture_core/http_client/authorization_interceptor.dart';
 export 'package:clean_architecture_core/http_client/dio_factory.dart';
+export 'package:clean_architecture_core/json_converters/date_time_iso_8601_converter.dart';
+export 'package:clean_architecture_core/json_converters/only_date_converter.dart';
 export 'package:clean_architecture_core/response_wrapper/converter.dart';
 export 'package:clean_architecture_core/response_wrapper/response_wrapper.dart';
 export 'package:clean_architecture_core/router/core_navigator.dart';
@@ -22,6 +24,7 @@ export 'package:clean_architecture_core/router/core_router.dart';
 export 'package:clean_architecture_core/utilities/catch_and_map_exception.dart';
 export 'package:clean_architecture_core/utilities/extension.dart';
 export 'package:clean_architecture_core/utilities/jwt_utils.dart';
+export 'package:clean_architecture_core/utilities/regex.dart';
 
 final getIt = GetIt.I;
 
