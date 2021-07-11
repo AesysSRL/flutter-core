@@ -33,8 +33,7 @@ final getIt = GetIt.I;
 
 class Core {
   static Future<void> init(AppErrorMessageDelegate appErrorMessageDelegate) async {
-    final deviceLocale = await Devicelocale.currentLocale;
-    Intl.defaultLocale = deviceLocale;
+    Intl.defaultLocale = await Devicelocale.currentLocale;
     getIt
       ..registerLazySingleton<CoreNavigator>(() => CoreNavigator(), instanceName: 'root')
       ..registerLazySingleton<Connectivity>(() => Connectivity())
