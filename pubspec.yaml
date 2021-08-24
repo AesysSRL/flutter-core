@@ -20,7 +20,7 @@ dependencies:
 
   # service locator
   get_it:
-  dartz:  0.10.0-nullsafety.2
+  dartz: ^0.10.0
 
   shared_preferences:
 
@@ -29,5 +29,3 @@ dev_dependencies:
     sdk: flutter
 
   pedantic:
-
-flutter:
