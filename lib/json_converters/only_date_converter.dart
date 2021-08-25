@@ -7,7 +7,7 @@ class NullableOnlyDateJsonConverter implements JsonConverter<DateTime?, String?>
   @override
   DateTime? fromJson(String? json) {
     if (json != null) {
-      return DateFormat('yyyy-MM-dd').parse(json, true);
+      return DateFormat('yyyy-MM-dd').parse(json);
     }
     return null;
   }
@@ -26,7 +26,7 @@ class OnlyDateJsonConverter implements JsonConverter<DateTime, String> {
 
   @override
   DateTime fromJson(String json) {
-    return DateFormat('yyyy-MM-dd').parse(json, true);
+    return DateFormat('yyyy-MM-dd').parse(json);
   }
 
   @override
