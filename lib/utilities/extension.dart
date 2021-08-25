@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 extension $DateTime on DateTime {
@@ -104,4 +105,19 @@ extension ScopeFunctionsForObject<T extends Object> on T {
     operationFor(this);
     return this;
   }
+}
+
+extension TimeOfDayExtension on TimeOfDay {
+  int compareTo(TimeOfDay other) {
+    if (hour < other.hour) return -1;
+    if (hour > other.hour) return 1;
+    if (minute < other.minute) return -1;
+    if (minute > other.minute) return 1;
+    return 0;
+  }
+
+  bool isBefore(TimeOfDay other) => compareTo(other) == -1;
+  bool isAfter(TimeOfDay other) => compareTo(other) == 1;
+  bool isSame(TimeOfDay other) => compareTo(other) == 0;
+  bool isBetween(TimeOfDay start, TimeOfDay end) => isAfter(start) && isBefore(end);
 }
