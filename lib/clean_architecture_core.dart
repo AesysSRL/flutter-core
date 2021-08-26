@@ -2,7 +2,6 @@ library clean_architecture_core;
 
 
 import 'package:clean_architecture_core/error_mapping/app_error.dart';
-import 'package:clean_architecture_core/router/core_navigator.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:devicelocale/devicelocale.dart';
 import 'package:get_it/get_it.dart';
@@ -22,8 +21,6 @@ export 'package:clean_architecture_core/json_converters/date_time_iso_8601_conve
 export 'package:clean_architecture_core/json_converters/only_date_converter.dart';
 export 'package:clean_architecture_core/response_wrapper/converter.dart';
 export 'package:clean_architecture_core/response_wrapper/response_wrapper.dart';
-export 'package:clean_architecture_core/router/core_navigator.dart';
-export 'package:clean_architecture_core/router/core_router.dart';
 export 'package:clean_architecture_core/utilities/catch_and_map_exception.dart';
 export 'package:clean_architecture_core/utilities/extension.dart';
 export 'package:clean_architecture_core/utilities/jwt_utils.dart';
@@ -35,7 +32,6 @@ class Core {
   static Future<void> init(AppErrorMessageDelegate appErrorMessageDelegate) async {
     Intl.defaultLocale = await Devicelocale.currentLocale;
     getIt
-      ..registerLazySingleton<CoreNavigator>(() => CoreNavigator(), instanceName: 'root')
       ..registerLazySingleton<Connectivity>(() => Connectivity())
       ..registerLazySingleton<AppErrorMessageDelegate>(() => appErrorMessageDelegate);
   }

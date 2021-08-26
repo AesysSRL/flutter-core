@@ -1,5 +1,5 @@
 import 'package:clean_architecture_core/error_mapping/app_error.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
 abstract class UseCase {}
 

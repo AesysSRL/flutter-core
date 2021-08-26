@@ -20,7 +20,7 @@ dependencies:
 
   # service locator
   get_it:
-  dartz: ^0.10.0
+  fpdart:
 
   shared_preferences:
 
