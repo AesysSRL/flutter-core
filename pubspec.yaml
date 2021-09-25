@@ -3,8 +3,8 @@ description: The core of all clean architecture flutter projects
 version: 1.0.0
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0 <2.1.0"
+  sdk: ">=2.13.4 <3.0.0"
+  flutter: ">=2.2.3 <3.0.0"
 
 dependencies:
   flutter:
