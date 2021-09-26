@@ -14,19 +14,20 @@ dependencies:
   flutter_loggy: ^2.0.1
   flutter_loggy_dio: ^2.0.0+3
 
-  json_annotation:
-  intl:
-  devicelocale:
+  json_annotation: ^4.1.0
+  intl: ^0.17.0
+
+  devicelocale: ^0.4.3
 
   # http
-  dio:
-  connectivity_plus:
+  dio: ^4.0.0
+  connectivity_plus: ^1.1.0
 
   # service locator
-  get_it:
-  fpdart:
+  get_it: ^7.2.0
+  fpdart: ^0.0.11
 
-  shared_preferences:
+  shared_preferences: ^2.0.8
 
 dev_dependencies:
   flutter_test:
