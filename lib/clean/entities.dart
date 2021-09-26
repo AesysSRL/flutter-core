@@ -1,5 +1,5 @@
-abstract class Request {
+abstract class RequestEntity {
   Map<String, dynamic> toJson();
 }
 
-abstract class Response {}
+abstract class ResponseEntity {}
