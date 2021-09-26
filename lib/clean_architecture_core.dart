@@ -17,6 +17,7 @@ export 'package:clean_architecture_core/clean/entities.dart';
 export 'package:clean_architecture_core/clean/repository.dart';
 export 'package:clean_architecture_core/clean/use_case.dart';
 export 'package:clean_architecture_core/error_mapping/failure.dart';
+export 'package:clean_architecture_core/error_mapping/network_exception.dart';
 export 'package:clean_architecture_core/http_client/authorization_interceptor.dart';
 export 'package:clean_architecture_core/http_client/dio_factory.dart';
 export 'package:clean_architecture_core/json_converters/date_time_iso_8601_converter.dart';
