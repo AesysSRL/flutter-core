@@ -1,3 +1,4 @@
+import 'package:clean_architecture_core/error_mapping/network_exception.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
@@ -28,7 +29,7 @@ class DioFactory {
         errorLevel: LogLevel.warning,
       ));
     }
-    _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll(interceptors);
+    _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll([...interceptors, ErrorMapperInterceptor()]);
   }
 
   static Dio getDioInstance([String dioInstanceName = _defaultDio]) {
@@ -43,5 +44,16 @@ class DioFactory {
 
   static int getNumberOfDioInstances() {
     return _dioInstances.length;
+  }
+}
+
+class ErrorMapperInterceptor extends Interceptor {
+  @override
+  void onError(DioError err, ErrorInterceptorHandler handler) {
+    err = NetworkException(
+        requestOptions: err.requestOptions,
+        message: err.response?.statusMessage ?? 'Generic network exception',
+        code:  err.response?.statusCode ?? 999);
+    super.onError(err, handler);
   }
 }
