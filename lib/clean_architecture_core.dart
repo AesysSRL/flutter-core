@@ -22,6 +22,7 @@ export 'package:clean_architecture_core/http_client/authorization_interceptor.da
 export 'package:clean_architecture_core/http_client/dio_factory.dart';
 export 'package:clean_architecture_core/json_converters/date_time_iso_8601_converter.dart';
 export 'package:clean_architecture_core/json_converters/only_date_converter.dart';
+export 'package:clean_architecture_core/lint_options/analysis_options.yaml';
 export 'package:clean_architecture_core/response_wrapper/converter.dart';
 export 'package:clean_architecture_core/response_wrapper/response_wrapper.dart';
 export 'package:clean_architecture_core/utilities/catch_and_map_exception.dart';
