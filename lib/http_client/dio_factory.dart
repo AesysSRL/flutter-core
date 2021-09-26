@@ -23,9 +23,8 @@ class DioFactory {
       dioInstance.interceptors.add(LoggyDioInterceptor(
         requestHeader: true,
         requestBody: true,
-        maxWidth: 160,
-        requestLevel: LogLevel.debug,
-        responseLevel: LogLevel.debug,
+        requestLevel: LogLevel.info,
+        responseLevel: LogLevel.info,
         errorLevel: LogLevel.warning,
       ));
     }
