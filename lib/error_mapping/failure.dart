@@ -10,7 +10,7 @@ class Failure {
 
   factory Failure.offline() => Failure(code: 1, message: injector<FailureMessageDelegate>().offlineErrorMessage());
 
-  factory Failure.fromException(e) => injector<FailureMessageDelegate>().appErrorFromException(e);
+  factory Failure.fromException(e) => injector<FailureMessageDelegate>().failureFromException(e);
 
   @override
   bool operator ==(Object other) =>
@@ -28,12 +28,12 @@ class Failure {
 class FailureMessageDelegate {
   final TranslateFunction genericErrorMessage;
   final TranslateFunction offlineErrorMessage;
-  final FailureFromExceptionFunction appErrorFromException;
+  final FailureFromExceptionFunction failureFromException;
 
   const FailureMessageDelegate({
     required this.genericErrorMessage,
     required this.offlineErrorMessage,
-    required this.appErrorFromException,
+    required this.failureFromException,
   });
 }
 
