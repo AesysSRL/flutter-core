@@ -10,13 +10,16 @@ dependencies:
   flutter:
     sdk: flutter
 
+  loggy: ^2.0.1
+  flutter_loggy: ^2.0.1
+  flutter_loggy_dio: ^2.0.0+3
+
   json_annotation:
   intl:
   devicelocale:
 
   # http
   dio:
-  pretty_dio_logger:
   connectivity_plus:
 
   # service locator

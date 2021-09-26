@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
+import 'package:loggy/loggy.dart';
 
 class DioFactory {
   static const String _defaultDio = 'default';
@@ -18,11 +19,13 @@ class DioFactory {
       {List<Interceptor> interceptors = const <Interceptor>[], bool logging = true}) {
     final dioInstance = Dio();
     if (!kReleaseMode && logging) {
-      dioInstance.interceptors.add(PrettyDioLogger(
+      dioInstance.interceptors.add(LoggyDioInterceptor(
         requestHeader: true,
         requestBody: true,
-        maxWidth: 140,
-        logPrint: (object) => debugPrint(object.toString()),
+        maxWidth: 160,
+        requestLevel: LogLevel.debug,
+        responseLevel: LogLevel.debug,
+        errorLevel: LogLevel.warning,
       ));
     }
     _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll(interceptors);

@@ -2,8 +2,11 @@ library clean_architecture_core;
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:devicelocale/devicelocale.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:loggy/loggy.dart';
 
 import 'error_mapping/failure.dart';
 
@@ -33,5 +36,12 @@ class Core {
     injector
       ..registerLazySingleton<Connectivity>(() => Connectivity())
       ..registerLazySingleton<FailureMessageDelegate>(() => appErrorMessageDelegate);
+    Loggy.initLoggy(
+        logOptions: const LogOptions(
+          kReleaseMode ? LogLevel.off : LogLevel.all,
+          includeCallerInfo: true,
+          stackTraceLevel: LogLevel.error,
+        ),
+        logPrinter: const PrettyDeveloperPrinter());
   }
 }
