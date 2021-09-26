@@ -16,7 +16,8 @@ dependencies:
 
   # http
   dio:
-  connectivity:
+  pretty_dio_logger:
+  connectivity_plus:
 
   # service locator
   get_it:
@@ -28,4 +29,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  pedantic:
+  flutter_lints: ^1.0.4

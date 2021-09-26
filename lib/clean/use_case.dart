@@ -1,10 +1,11 @@
-import 'package:clean_architecture_core/error_mapping/app_error.dart';
 import 'package:fpdart/fpdart.dart';
+
+import '../error_mapping/failure.dart';
 
 abstract class UseCase {}
 
 abstract class EitherAsyncUseCase<R> extends UseCase {
-  Future<Either<AppError, R>> call();
+  Future<Either<Failure, R>> call();
 }
 
 abstract class AsyncUseCase<R> extends UseCase {
@@ -12,7 +13,7 @@ abstract class AsyncUseCase<R> extends UseCase {
 }
 
 abstract class EitherSyncUseCase<R> extends UseCase {
-  Either<AppError, R> call();
+  Either<Failure, R> call();
 }
 
 abstract class SyncUseCase<R> extends UseCase {
@@ -20,7 +21,7 @@ abstract class SyncUseCase<R> extends UseCase {
 }
 
 abstract class EitherAsyncUseCaseParam<I, R> extends UseCase {
-  Future<Either<AppError, R>> call(I param);
+  Future<Either<Failure, R>> call(I param);
 }
 
 abstract class AsyncUseCaseParam<I, R> extends UseCase {
@@ -28,7 +29,7 @@ abstract class AsyncUseCaseParam<I, R> extends UseCase {
 }
 
 abstract class EitherSyncUseCaseParam<I, R> extends UseCase {
-  Either<AppError, R> call(I param);
+  Either<Failure, R> call(I param);
 }
 
 abstract class SyncUseCaseParam<I, R> extends UseCase {

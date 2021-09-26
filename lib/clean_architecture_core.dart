@@ -1,11 +1,11 @@
 library clean_architecture_core;
 
-
-import 'package:clean_architecture_core/error_mapping/app_error.dart';
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:devicelocale/devicelocale.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+
+import 'error_mapping/failure.dart';
 
 export 'package:clean_architecture_core/clean/core_provider.dart';
 export 'package:clean_architecture_core/clean/core_store.dart';
@@ -13,8 +13,7 @@ export 'package:clean_architecture_core/clean/data_source.dart';
 export 'package:clean_architecture_core/clean/entities.dart';
 export 'package:clean_architecture_core/clean/repository.dart';
 export 'package:clean_architecture_core/clean/use_case.dart';
-export 'package:clean_architecture_core/error_mapping/app_error.dart';
-export 'package:clean_architecture_core/error_mapping/network_exception.dart';
+export 'package:clean_architecture_core/error_mapping/failure.dart';
 export 'package:clean_architecture_core/http_client/authorization_interceptor.dart';
 export 'package:clean_architecture_core/http_client/dio_factory.dart';
 export 'package:clean_architecture_core/json_converters/date_time_iso_8601_converter.dart';
@@ -26,13 +25,13 @@ export 'package:clean_architecture_core/utilities/extension.dart';
 export 'package:clean_architecture_core/utilities/jwt_utils.dart';
 export 'package:clean_architecture_core/utilities/regex.dart';
 
-final getIt = GetIt.I;
+final injector = GetIt.I;
 
 class Core {
-  static Future<void> init(AppErrorMessageDelegate appErrorMessageDelegate) async {
+  static Future<void> init(FailureMessageDelegate appErrorMessageDelegate) async {
     Intl.defaultLocale = await Devicelocale.currentLocale;
-    getIt
+    injector
       ..registerLazySingleton<Connectivity>(() => Connectivity())
-      ..registerLazySingleton<AppErrorMessageDelegate>(() => appErrorMessageDelegate);
+      ..registerLazySingleton<FailureMessageDelegate>(() => appErrorMessageDelegate);
   }
 }

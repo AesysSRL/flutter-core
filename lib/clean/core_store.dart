@@ -8,7 +8,9 @@ abstract class CoreStore {
   }
 
   void resetReactions() {
-    _reactiveDisposers.forEach((d) => d());
+    for (final d in _reactiveDisposers) {
+      d();
+    }
     _reactiveDisposers.clear();
   }
 }

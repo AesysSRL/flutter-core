@@ -43,8 +43,8 @@ extension $Iterable<E> on Iterable<E> {
   }
 
   bool containsAll(Iterable<E> items) {
-    for(final item in items){
-      if(!contains(item)){
+    for (final item in items) {
+      if (!contains(item)) {
         return false;
       }
     }
@@ -66,8 +66,8 @@ extension $IterableNullValue<E extends Object?> on Iterable<E?> {
 
 extension $List<E> on List<E> {
   bool containsAll(List<E> items) {
-    for(final item in items){
-      if(!contains(item)){
+    for (final item in items) {
+      if (!contains(item)) {
         return false;
       }
     }
@@ -77,8 +77,8 @@ extension $List<E> on List<E> {
 
 extension $ListNullValue<E extends Object?> on List<E?> {
   bool containsAll(List<E?> items) {
-    for(final item in items){
-      if(!contains(item)){
+    for (final item in items) {
+      if (!contains(item)) {
         return false;
       }
     }

@@ -1,5 +1,6 @@
-import 'package:clean_architecture_core/clean/entities.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../clean/entities.dart';
 
 abstract class RequestConverter<T extends Request> implements JsonConverter<T, Map<String, dynamic>> {
   const RequestConverter();

@@ -1,27 +1,34 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
-import '../error_mapping/network_exception.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
-  static const String _DEFAULT_DIO = 'default';
+  static const String _defaultDio = 'default';
   static final Map<String, Dio> _dioInstances = {};
 
   // ---------------------------------------------------------------------------
   //                                                       Dio instances manager
   // ---------------------------------------------------------------------------
-  static void initialize({List<Interceptor> interceptors = const <Interceptor>[]}) {
-    newDioInstance(_DEFAULT_DIO, interceptors: interceptors);
+  static void initialize(
+      {List<Interceptor> interceptors = const <Interceptor>[], bool logging = true}) {
+    newDioInstance(_defaultDio, interceptors: interceptors, logging: logging);
   }
 
-  static void newDioInstance(String dioInstanceName, {List<Interceptor> interceptors = const <Interceptor>[]}) {
+  static void newDioInstance(String dioInstanceName,
+      {List<Interceptor> interceptors = const <Interceptor>[], bool logging = true}) {
     final dioInstance = Dio();
-    if(!kReleaseMode) dioInstance.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
-    _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll([...interceptors, ErrorMapperInterceptor()]);
+    if (!kReleaseMode && logging) {
+      dioInstance.interceptors.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        maxWidth: 140,
+        logPrint: (object) => debugPrint(object.toString()),
+      ));
+    }
+    _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll(interceptors);
   }
 
-  static Dio getDioInstance([String dioInstanceName = _DEFAULT_DIO]) {
+  static Dio getDioInstance([String dioInstanceName = _defaultDio]) {
     if (_dioInstances.isEmpty) {
       throw Exception('no Dio has been evocated, have to call initilize() or newDioInstance()');
     }
@@ -33,16 +40,5 @@ class DioFactory {
 
   static int getNumberOfDioInstances() {
     return _dioInstances.length;
-  }
-}
-
-class ErrorMapperInterceptor extends Interceptor {
-  @override
-  void onError(DioError dioError, ErrorInterceptorHandler handler) {
-    dioError = NetworkException(
-        requestOptions: dioError.requestOptions,
-        message: dioError.response?.statusMessage ?? 'Generic network exception',
-        code: dioError.response?.statusCode ?? 999);
-    super.onError(dioError, handler);
   }
 }
