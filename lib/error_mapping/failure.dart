@@ -6,15 +6,21 @@ class Failure {
 
   Failure({this.code = 999, required this.message});
 
-  factory Failure.genericError() => Failure(code: 0, message: injector<FailureMessageDelegate>().genericErrorMessage());
+  factory Failure.genericError() =>
+      Failure(code: 0, message: injector<FailureMessageDelegate>().genericErrorMessage());
 
-  factory Failure.offline() => Failure(code: 1, message: injector<FailureMessageDelegate>().offlineErrorMessage());
+  factory Failure.offline() =>
+      Failure(code: 1, message: injector<FailureMessageDelegate>().offlineErrorMessage());
 
   factory Failure.fromException(e) => injector<FailureMessageDelegate>().failureFromException(e);
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is Failure && runtimeType == other.runtimeType && code == other.code && message == other.message;
+      identical(this, other) ||
+      other is Failure &&
+          runtimeType == other.runtimeType &&
+          code == other.code &&
+          message == other.message;
 
   @override
   int get hashCode => code.hashCode ^ message.hashCode;
