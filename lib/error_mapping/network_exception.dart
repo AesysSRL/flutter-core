@@ -1,13 +1,30 @@
+import 'dart:core';
+
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class NetworkException extends DioError {
   @override
   String message;
   int code;
 
-  NetworkException({
-    @required this.message,
-    @required this.code
-  });
+  NetworkException({required RequestOptions requestOptions, required this.message, required this.code})
+      : super(requestOptions: requestOptions);
+
+  @override
+  bool operator ==(o) => o is NetworkException && o.code == code && o.message == message;
+
+  @override
+  String toString() {
+    return 'code: $code, message: $message';
+  }
+
+  @override
+  int get hashCode => code.hashCode + message.hashCode;
+}
+
+class AppException implements Exception {
+  String message;
+  int code;
+
+  AppException({required this.message, required this.code});
 }

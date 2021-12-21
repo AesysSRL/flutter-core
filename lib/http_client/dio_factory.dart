@@ -1,113 +1,58 @@
-import 'dart:async';
-
+import 'package:clean_architecture_core/error_mapping/network_exception.dart';
 import 'package:dio/dio.dart';
-import 'package:logger/logger.dart';
-
-import '../error_mapping/network_exception.dart';
-
-Logger logger = Logger();
+import 'package:flutter/foundation.dart';
+import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
+import 'package:loggy/loggy.dart';
 
 class DioFactory {
-  static const String _DEFAULT_DIO = 'default';
-  final Map<String, Dio> _dioInstances = {};
-
-  // ---------------------------------------------------------------------------
-  //                                                    Singleton initialization
-  // ---------------------------------------------------------------------------
-  static final DioFactory _instance = DioFactory._internal();
-
-  factory DioFactory() {
-    return _instance;
-  }
-
-  DioFactory._internal();
+  static const String _defaultDio = 'default';
+  static final Map<String, Dio> _dioInstances = {};
 
   // ---------------------------------------------------------------------------
   //                                                       Dio instances manager
   // ---------------------------------------------------------------------------
-  DioFactory initialize() {
-    newDioInstance(_DEFAULT_DIO, ErrorMapperInterceptor());
-    return _instance;
+  static void initialize(
+      {List<Interceptor> interceptors = const <Interceptor>[], bool logging = true}) {
+    newDioInstance(_defaultDio, interceptors: interceptors, logging: logging);
   }
 
-  DioFactory newDioInstance(String dioInstanceName, Interceptor interceptor) {
-    var dioInstance = Dio();
-    dioInstance.interceptors.add(LoggingInterceptors());
-    _dioInstances[dioInstanceName] = dioInstance..interceptors.add(interceptor);
-    return _instance;
+  static void newDioInstance(String dioInstanceName,
+      {List<Interceptor> interceptors = const <Interceptor>[], bool logging = true}) {
+    final dioInstance = Dio();
+    if (!kReleaseMode && logging) {
+      dioInstance.interceptors.add(LoggyDioInterceptor(
+        requestHeader: true,
+        requestBody: true,
+        requestLevel: LogLevel.info,
+        responseLevel: LogLevel.info,
+        errorLevel: LogLevel.warning,
+      ));
+    }
+    _dioInstances[dioInstanceName] = dioInstance..interceptors.addAll([...interceptors, ErrorMapperInterceptor()]);
   }
 
-  Dio getDioInstance([String dioInstanceName = _DEFAULT_DIO]) {
+  static Dio getDioInstance([String dioInstanceName = _defaultDio]) {
     if (_dioInstances.isEmpty) {
-      throw Exception(
-          'no Dio has been evocated, have to call initilize() or newDioInstance()');
+      throw Exception('no Dio has been evocated, have to call initilize() or newDioInstance()');
     }
     if (!_dioInstances.containsKey(dioInstanceName)) {
       throw Exception('there is no Dio with this name');
     }
-    return _dioInstances[dioInstanceName];
+    return _dioInstances[dioInstanceName]!;
   }
 
-  int getNumberOfDioInstances() {
+  static int getNumberOfDioInstances() {
     return _dioInstances.length;
   }
 }
 
 class ErrorMapperInterceptor extends Interceptor {
-
   @override
-  Future onError(DioError dioError) {
-    dioError = NetworkException(
-        message: dioError.response.statusMessage,
-        code: dioError.response.statusCode);
-    return super.onError(dioError);
+  void onError(DioError err, ErrorInterceptorHandler handler) {
+    err = NetworkException(
+        requestOptions: err.requestOptions,
+        message: err.response?.statusMessage ?? 'Generic network exception',
+        code:  err.response?.statusCode ?? 999);
+    super.onError(err, handler);
   }
-}
-
-
-class LoggingInterceptors extends Interceptor {
-  @override
-  Future onRequest(RequestOptions options) {
-    print(
-        "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
-    print('Headers:');
-    options.headers.forEach((k, v) => print('$k: $v'));
-    if (options.queryParameters != null) {
-      print('queryParameters:');
-      options.queryParameters.forEach((k, v) => print('$k: $v'));
-    }
-    if (options.data != null) {
-      printWrapped('Body: ${options.data}');
-    }
-    print(
-        "--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
-
-    return super.onRequest(options);
-  }
-
-  @override
-  Future onError(DioError dioError) {
-    print(
-        "<-- ${dioError.message} ${(dioError.response?.request != null ? (dioError.response.request.baseUrl + dioError.response.request.path) : 'URL')}");
-    print(
-        "${dioError.response != null ? dioError.response.data : 'Unknown Error'}");
-    print('<-- End error');
-    return super.onError(dioError);
-  }
-
-  @override
-  Future onResponse(Response response) {
-    print(
-        "<-- ${response.statusCode} ${(response.request != null ? (response.request.baseUrl + response.request.path) : 'URL')}");
-    print('Headers:');
-    response.headers?.forEach((k, v) => print('$k: $v'));
-    printWrapped('Response: ${response.data}');
-    print('<-- END HTTP');
-    return super.onResponse(response);
-  }
-}
-
-void printWrapped(String text) {
-  final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
-  pattern.allMatches(text).forEach((match) => print(match.group(0)));
 }
