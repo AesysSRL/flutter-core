@@ -33,7 +33,7 @@ class Core {
   static Future<void> init(FailureMessageDelegate appErrorMessageDelegate) async {
     Intl.defaultLocale = await Devicelocale.currentLocale;
     injector.registerLazySingleton<FailureMessageDelegate>(() => appErrorMessageDelegate);
-    initInjector();
+    await initInjector();
     Loggy.initLoggy(
       logOptions: const LogOptions(
         kReleaseMode ? LogLevel.off : LogLevel.all,
