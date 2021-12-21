@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'injector_configuration.config.dart';
 
@@ -13,4 +14,7 @@ Future<void> initInjector() async => $initInjector(injector);
 abstract class ExternalLibraries {
   @injectable
   Connectivity get cbor => Connectivity();
+
+  @preResolve
+  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 }
