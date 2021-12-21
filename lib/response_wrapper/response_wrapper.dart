@@ -1,4 +1,1 @@
-
-
-abstract class ResponseWrapper<ResponseType> {
-}
+abstract class ResponseWrapper<ResponseType> {}

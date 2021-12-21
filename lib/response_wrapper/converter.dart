@@ -1,9 +1,8 @@
-
-import 'package:clean_architecture_core/clean/entities.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-abstract class RequestConverter<T extends Request>
-    implements JsonConverter<T, Map<String, dynamic>> {
+import '../clean/entities.dart';
+
+abstract class RequestConverter<T extends RequestEntity> implements JsonConverter<T, Map<String, dynamic>> {
   const RequestConverter();
 
   @override
@@ -13,8 +12,7 @@ abstract class RequestConverter<T extends Request>
   Map<String, dynamic> toJson(T object) => object.toJson();
 }
 
-abstract class ResponseConverter<T extends Response>
-    implements JsonConverter<T, Map<String, dynamic>> {
+abstract class ResponseConverter<T extends ResponseEntity> implements JsonConverter<T, Map<String, dynamic>> {
   const ResponseConverter();
 
   @override

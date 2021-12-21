@@ -1,2 +1,1 @@
-abstract class DataSource {
-}
+abstract class DataSource {}
