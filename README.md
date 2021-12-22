@@ -16,7 +16,6 @@ samples, guidance on mobile development, and a full API reference.
 #Include the following libraries
 
 * [loggy](https://pub.dev/packages/loggy)
-* [json_annotation](https://pub.dev/packages/json_annotation)
 * [intl](https://pub.dev/packages/intl)
 * [dio](https://pub.dev/packages/dio)
 * [get_it](https://pub.dev/packages/get_it)
