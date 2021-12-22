@@ -1,7 +1,8 @@
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class NullableOnlyDateJsonConverter implements JsonConverter<DateTime?, String?> {
+class NullableOnlyDateJsonConverter
+    implements JsonConverter<DateTime?, String?> {
   const NullableOnlyDateJsonConverter();
 
   @override

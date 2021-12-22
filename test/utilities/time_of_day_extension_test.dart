@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   const testTimeOfDay = TimeOfDay(hour: 12, minute: 00);
 
-  group('compareTo', (){
+  group('compareTo', () {
     test('this is ordered before other', () {
       const testTimeOfDayAfter = TimeOfDay(hour: 20, minute: 00);
       expect(testTimeOfDay.compareTo(testTimeOfDayAfter), equals(-1));
@@ -47,67 +47,84 @@ void main() {
     expect(testTimeOfDay.isSame(testTimeOfDayTogether), true);
   });
 
-  group('this is ordered after start and before end', (){
+  group('this is ordered after start and before end', () {
     test('lower limit', () {
       const testTimeOfDayStart = TimeOfDay(hour: 12, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 20, minute: 00);
-      expect(testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
+      expect(
+          testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
     });
 
     test('upper limit', () {
       const testTimeOfDayStart = TimeOfDay(hour: 8, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 12, minute: 00);
-      expect(testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
+      expect(
+          testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
     });
 
     test('in range', () {
       const testTimeOfDayStart = TimeOfDay(hour: 8, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 18, minute: 00);
-      expect(testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), true);
+      expect(
+          testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), true);
     });
 
     test('outside lower limit', () {
       const testTimeOfDayStart = TimeOfDay(hour: 18, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 20, minute: 00);
-      expect(testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
+      expect(
+          testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
     });
 
     test('outside upper limit', () {
       const testTimeOfDayStart = TimeOfDay(hour: 6, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 10, minute: 00);
-      expect(testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
+      expect(
+          testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
     });
   });
 
-  group('this is ordered after or together start and before or together end ', (){
+  group('this is ordered after or together start and before or together end ',
+      () {
     test('lower limit', () {
       const testTimeOfDayStart = TimeOfDay(hour: 12, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 20, minute: 00);
-      expect(testTimeOfDay.isBetweenInclusive(testTimeOfDayStart, testTimeOfDayEnd), true);
+      expect(
+          testTimeOfDay.isBetweenInclusive(
+              testTimeOfDayStart, testTimeOfDayEnd),
+          true);
     });
 
     test('upper limit', () {
       const testTimeOfDayStart = TimeOfDay(hour: 8, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 12, minute: 00);
-      expect(testTimeOfDay.isBetweenInclusive(testTimeOfDayStart, testTimeOfDayEnd), true);
+      expect(
+          testTimeOfDay.isBetweenInclusive(
+              testTimeOfDayStart, testTimeOfDayEnd),
+          true);
     });
 
     test('in range', () {
       const testTimeOfDayStart = TimeOfDay(hour: 8, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 18, minute: 00);
-      expect(testTimeOfDay.isBetweenInclusive(testTimeOfDayStart, testTimeOfDayEnd), true);
+      expect(
+          testTimeOfDay.isBetweenInclusive(
+              testTimeOfDayStart, testTimeOfDayEnd),
+          true);
     });
 
     test('outside lower limit', () {
       const testTimeOfDayStart = TimeOfDay(hour: 18, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 20, minute: 00);
-      expect(testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
+      expect(
+          testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
     });
 
     test('outside upper limit', () {
       const testTimeOfDayStart = TimeOfDay(hour: 6, minute: 00);
       const testTimeOfDayEnd = TimeOfDay(hour: 10, minute: 00);
-      expect(testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
+      expect(
+          testTimeOfDay.isBetween(testTimeOfDayStart, testTimeOfDayEnd), false);
     });
   });
 }

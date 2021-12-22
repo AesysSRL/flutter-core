@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 
@@ -33,7 +32,8 @@ class DioFactory {
       ));
     }
     injector.registerLazySingleton(
-      () => dioInstance..interceptors.addAll([...interceptors, ErrorMapperInterceptor()]),
+      () => dioInstance
+        ..interceptors.addAll([...interceptors, ErrorMapperInterceptor()]),
       instanceName: dioInstanceName,
     );
   }
@@ -42,7 +42,8 @@ class DioFactory {
     try {
       return injector<Dio>(instanceName: dioInstanceName);
     } catch (e) {
-      throw Failure(message: 'No Dio instance registered with name $dioInstanceName');
+      throw Failure(
+          message: 'No Dio instance registered with name $dioInstanceName');
     }
   }
 }

@@ -8,7 +8,9 @@ class NetworkFailure extends DioError {
   int code;
 
   NetworkFailure(
-      {required RequestOptions requestOptions, required this.message, required this.code})
+      {required RequestOptions requestOptions,
+      required this.message,
+      required this.code})
       : super(requestOptions: requestOptions);
 
   @override
