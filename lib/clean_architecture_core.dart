@@ -3,6 +3,7 @@ library clean_architecture_core;
 import 'package:devicelocale/devicelocale.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:loggy/loggy.dart';
 
@@ -31,6 +32,7 @@ export 'package:shared_preferences/shared_preferences.dart';
 class Core {
   static Future<void> init(FailureMessageDelegate appErrorMessageDelegate) async {
     Intl.defaultLocale = await Devicelocale.currentLocale;
+    initializeDateFormatting();
     injector.registerLazySingleton<FailureMessageDelegate>(() => appErrorMessageDelegate);
     await initInjector();
     Loggy.initLoggy(
