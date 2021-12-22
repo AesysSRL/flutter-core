@@ -17,7 +17,6 @@ export 'package:clean_architecture_core/error_mapping/network_failure.dart';
 export 'package:clean_architecture_core/http_client/dio_factory.dart';
 export 'package:clean_architecture_core/json_converters/date_time_iso_8601_converter.dart';
 export 'package:clean_architecture_core/json_converters/only_date_converter.dart';
-export 'package:clean_architecture_core/lint_options/analysis_options.yaml';
 export 'package:clean_architecture_core/utilities/catch_and_map_exception.dart';
 export 'package:clean_architecture_core/utilities/extension.dart';
 export 'package:clean_architecture_core/utilities/jwt_utils.dart';
