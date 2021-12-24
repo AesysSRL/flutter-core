@@ -30,12 +30,10 @@ export 'package:loggy/loggy.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 
 class Core {
-  static Future<void> init(
-      FailureMessageDelegate appErrorMessageDelegate) async {
+  static Future<void> init(FailureMessageDelegate appErrorMessageDelegate) async {
     Intl.defaultLocale = await Devicelocale.currentLocale;
     initializeDateFormatting();
-    injector.registerLazySingleton<FailureMessageDelegate>(
-        () => appErrorMessageDelegate);
+    injector.registerLazySingleton<FailureMessageDelegate>(() => appErrorMessageDelegate);
     await initInjector();
     Loggy.initLoggy(
       logOptions: const LogOptions(

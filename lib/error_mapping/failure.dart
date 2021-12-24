@@ -6,16 +6,13 @@ class Failure {
 
   Failure({this.code = 999, required this.message});
 
-  factory Failure.genericError() => Failure(
-      code: 0,
-      message: injector<FailureMessageDelegate>().genericErrorMessage());
+  factory Failure.genericError() =>
+      Failure(code: 0, message: injector<FailureMessageDelegate>().genericErrorMessage());
 
-  factory Failure.offline() => Failure(
-      code: 1,
-      message: injector<FailureMessageDelegate>().offlineErrorMessage());
+  factory Failure.offline() =>
+      Failure(code: 1, message: injector<FailureMessageDelegate>().offlineErrorMessage());
 
-  factory Failure.fromException(e) =>
-      injector<FailureMessageDelegate>().failureFromException(e);
+  factory Failure.fromException(e) => injector<FailureMessageDelegate>().failureFromException(e);
 
   @override
   bool operator ==(Object other) =>

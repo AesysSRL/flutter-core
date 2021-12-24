@@ -1,8 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../clean_architecture_core.dart';
 import 'injector_configuration.config.dart';
 
 final injector = GetIt.I;
@@ -14,6 +12,9 @@ Future<void> initInjector() async => $initInjector(injector);
 abstract class ExternalLibraries {
   @injectable
   Connectivity get cbor => Connectivity();
+
+  @injectable
+  DateFormat get dateFormat => DateFormat();
 
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();

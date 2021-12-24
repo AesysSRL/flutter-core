@@ -1,12 +1,10 @@
 class Regex {
   static const fiscalCode = r'^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$';
   static const zipCode = r'^[0-9]{5}(?:-[0-9]{4})?$';
-  static const passwordLettersNumber =
-      r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$';
+  static const passwordLettersNumber = r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$';
   static const passwordLettersNumberSpecial =
       r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&"£/()=?^])[A-Za-z\d@$!%*#?&"£/()=?^]{8,}$';
-  static const passwordUpperLowerNumber =
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$';
+  static const passwordUpperLowerNumber = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$';
   static const passwordUpperLowerNumberSpecial =
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&"£/()=?^])[A-Za-z\d@$!%*?&"£/()=?^]{8,}$';
   static const dateDym =

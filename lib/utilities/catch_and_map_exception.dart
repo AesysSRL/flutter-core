@@ -49,6 +49,5 @@ Either<Failure, R> catchExceptionSync<R>(
   R Function() call, {
   FailureFromExceptionFunction? onFailure,
 }) {
-  return Either.tryCatch(
-      () => call(), (e, _) => onFailure?.call(e) ?? Failure.fromException(e));
+  return Either.tryCatch(() => call(), (e, _) => onFailure?.call(e) ?? Failure.fromException(e));
 }
