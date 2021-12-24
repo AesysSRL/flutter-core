@@ -13,9 +13,6 @@ abstract class ExternalLibraries {
   @injectable
   Connectivity get cbor => Connectivity();
 
-  @injectable
-  DateFormat get dateFormat => DateFormat();
-
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 }
