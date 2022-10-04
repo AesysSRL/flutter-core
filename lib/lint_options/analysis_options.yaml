@@ -1,10 +1,10 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [ lib/**/*.g.dart ]
+  exclude: [ lib/**/*.g.dart, lib/**/*.config.dart, lib/**/*.mocks.dart ]
 
 format:
-  line-length: 140
+  line-length: 120
 
 linter:
   rules:
