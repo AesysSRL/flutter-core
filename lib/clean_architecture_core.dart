@@ -2,9 +2,6 @@ library clean_architecture_core;
 
 import 'package:devicelocale/devicelocale.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_loggy/flutter_loggy.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
 import 'package:loggy/loggy.dart';
 
 import 'dependency_injection/injector_configuration.dart';
@@ -29,6 +26,7 @@ export 'package:injectable/injectable.dart';
 export 'package:intl/intl.dart';
 export 'package:loggy/loggy.dart';
 export 'package:shared_preferences/shared_preferences.dart';
+export 'package:intl/date_symbol_data_local.dart';
 
 class Core {
   static Future<void> init(FailureMessageDelegate appErrorMessageDelegate) async {
