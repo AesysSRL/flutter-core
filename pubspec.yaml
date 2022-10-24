@@ -21,12 +21,12 @@ dependencies:
 
   # http
   dio: ^4.0.6
-  connectivity_plus: ^2.3.8
+  connectivity_plus: ^3.0.2
 
   # service locator
   get_it: ^7.2.0
   injectable: ^1.5.3
-  fpdart: ^0.2.0
+  fpdart: ^0.3.0
 
   shared_preferences: ^2.0.15
 

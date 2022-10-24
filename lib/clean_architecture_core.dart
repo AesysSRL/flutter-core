@@ -1,7 +1,7 @@
 library clean_architecture_core;
 
-import 'package:devicelocale/devicelocale.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:loggy/loggy.dart';
 
 import 'dependency_injection/injector_configuration.dart';
