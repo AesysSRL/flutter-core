@@ -1,9 +1,9 @@
-library flutter_core;
+library clean_architecture_core;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_core/error_mapping/app_error.dart';
-import 'package:flutter_core/router/core-router.dart';
-import 'package:flutter_core/service_locator_initializer.dart';
+import 'package:clean_architecture_core/error_mapping/app_error.dart';
+import 'package:clean_architecture_core/router/core-router.dart';
+import 'package:clean_architecture_core/service_locator_initializer.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.I;

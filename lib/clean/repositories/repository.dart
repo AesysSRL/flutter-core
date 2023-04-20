@@ -1,4 +1,4 @@
-import 'package:flutter_core/clean/model.dart';
+import 'package:clean_architecture_core/clean/model.dart';
 
 abstract class Repository<I extends Model, O extends Model> {
 }

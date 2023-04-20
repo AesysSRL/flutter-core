@@ -1,8 +1,8 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_core/flutter_core.dart';
-import 'package:flutter_core/router/core-router.dart';
-import 'package:flutter_core/router/navigator_service.dart';
+import 'package:clean_architecture_core/flutter_core.dart';
+import 'package:clean_architecture_core/router/core-router.dart';
+import 'package:clean_architecture_core/router/navigator_service.dart';
 
 import 'error_mapping/app_error.dart';
 

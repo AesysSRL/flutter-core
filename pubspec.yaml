@@ -1,4 +1,4 @@
-name: flutter_core
+name: clean_architecture_core
 description: The core of all flutter project
 version: 1.0.0
 author:
@@ -16,7 +16,7 @@ dependencies:
   equatable: ^2.0.5
 
   # http
-  dio: ^5.0.2
+  dio: ^5.1.1
   connectivity: ^3.0.6
 
   # service locator
@@ -24,8 +24,8 @@ dependencies:
   dartz: ^0.10.1
 
   # notifications
-  firebase_core: ^2.7.1
-  firebase_messaging: ^14.2.6
+  firebase_core: ^2.10.0
+  firebase_messaging: ^14.4.1
 
 dev_dependencies:
   flutter_test:

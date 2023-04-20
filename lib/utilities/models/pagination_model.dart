@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_core/clean/model.dart';
+import 'package:clean_architecture_core/clean/model.dart';
 
 abstract class PaginationModel<T extends Model> extends Equatable{
 

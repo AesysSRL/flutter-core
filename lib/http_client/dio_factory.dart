@@ -53,18 +53,18 @@ class DioFactory {
 class ErrorMapperInterceptor extends Interceptor {
 
   @override
-  Future onError(DioError dioError) {
+  void onError(DioError dioError, ErrorInterceptorHandler handler) {
     dioError = NetworkException(
         message: dioError.response.statusMessage,
         code: dioError.response.statusCode);
-    return super.onError(dioError);
+    return super.onError(dioError, handler);
   }
 }
 
 
 class LoggingInterceptors extends Interceptor {
   @override
-  Future onRequest(RequestOptions options) {
+  void onRequest(RequestOptions options,RequestInterceptorHandler handler) {
     print(
         "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
     print('Headers:');
@@ -79,28 +79,28 @@ class LoggingInterceptors extends Interceptor {
     print(
         "--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
 
-    return super.onRequest(options);
+    return super.onRequest(options, handler);
   }
 
   @override
-  Future onError(DioError dioError) {
+  void onError(DioError dioError, ErrorInterceptorHandler handler) {
     print(
-        "<-- ${dioError.message} ${(dioError.response?.request != null ? (dioError.response.request.baseUrl + dioError.response.request.path) : 'URL')}");
+        "<-- ${dioError.message} ${(dioError.response?.requestOptions != null ? (dioError.response.requestOptions.baseUrl + dioError.response.requestOptions.path) : 'URL')}");
     print(
         "${dioError.response != null ? dioError.response.data : 'Unknown Error'}");
     print('<-- End error');
-    return super.onError(dioError);
+    return super.onError(dioError, handler);
   }
 
   @override
-  Future onResponse(Response response) {
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
     print(
-        "<-- ${response.statusCode} ${(response.request != null ? (response.request.baseUrl + response.request.path) : 'URL')}");
+        "<-- ${response.statusCode} ${(response.requestOptions != null ? (response.requestOptions.baseUrl + response.requestOptions.path) : 'URL')}");
     print('Headers:');
     response.headers?.forEach((k, v) => print('$k: $v'));
     printWrapped('Response: ${response.data}');
     print('<-- END HTTP');
-    return super.onResponse(response);
+    return super.onResponse(response, handler);
   }
 }
 
