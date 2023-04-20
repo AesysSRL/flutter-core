@@ -22,7 +22,6 @@ export 'package:clean_architecture_core/utilities/regex.dart';
 export 'package:dio/dio.dart';
 export 'package:fpdart/fpdart.dart';
 export 'package:get_it/get_it.dart';
-export 'package:injectable/injectable.dart';
 export 'package:intl/intl.dart';
 export 'package:loggy/loggy.dart';
 export 'package:shared_preferences/shared_preferences.dart';

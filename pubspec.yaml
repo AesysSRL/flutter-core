@@ -1,38 +1,40 @@
 name: clean_architecture_core
-description: The core of all flutter project
-version: 1.0.0
-author:
+description: The core of all clean architecture flutter projects
+version: 2.0.0
 
 environment:
-  sdk: ">=2.10.0 <3.0.0"
-  flutter: ">=1.22.0 <2.0.0"
+  sdk: ">=2.18.0 <3.0.0"
+  flutter: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  path: ^1.8.2
+  loggy: ^2.0.3
+  flutter_loggy: ^2.0.2
+  flutter_loggy_dio: ^3.0.1
+
   json_annotation: ^4.8.0
-  equatable: ^2.0.5
+  intl: ^0.18.1
+
+  devicelocale: ^0.6.0
 
   # http
   dio: ^5.1.1
-  connectivity: ^3.0.6
+  connectivity_plus: ^3.0.4
 
   # service locator
   get_it: ^7.2.0
-  dartz: ^0.10.1
+  injectable: ^2.1.1
+  fpdart: ^0.5.0
 
-  # notifications
-  firebase_core: ^2.10.0
-  firebase_messaging: ^14.4.1
+  shared_preferences: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   build_runner: ^2.3.3
-  json_serializable: ^6.6.1
-  pedantic: ^1.11.1
+  injectable_generator: ^2.1.5
 
-flutter:
+  flutter_lints: ^2.0.1
